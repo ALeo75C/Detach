@@ -1,0 +1,106 @@
+<p id="notice"><%= notice %></p>
+
+<header>
+  <div class="cover">
+    <div class="image"><%= image_tag @product.image.url unless @product.image.url == nil %></div>
+    <h3>Сравните цены и закажите товар по выгодной цене</h3>
+  </div>
+
+  <div class="attention">
+    <h1><%= @product.name %></h1>
+    <div class="block">
+      <p>Может вызвать аллергию</p>
+    </div>
+    <div class="block">
+      <div class="im"></div>
+      <p>Может не соответствовать описанию</p>
+    </div>
+    <div class="tags">
+      <h4>Подходит для типов кожи</h4>
+      <h4>Возможны проблемы</h4>
+    </div>
+    <div class="check">
+      <div class="rab"></div>
+      <p></p>
+    </div>
+    <div>
+      <% if current_user %>
+        <%= link_to 'Добавить в избранное', profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id), method: :post%>
+      <% end %>
+    </div>
+  </div>
+</header>
+
+
+<main>
+  <h2>Описание продукта</h2>
+  <p><%= @product.description %></p>
+
+  <!-- Вывести бесполезные элемнты -->
+
+  <div class="structure">
+    <% final_structure = Array.new %>
+    <% product_promise = Array.new %>
+    <% component_aictive_effects = Array.new %>
+    <% stimuli = Array.new %>
+    <% support = Array.new %>
+    <% active_components_final = Array.new %>
+    <% active_components = Array.new %>
+    <% structure = @product.components.all %>
+
+    <% promist = @product.active_effects.all %>
+    <div class="table">
+
+      <div class="t_head">
+        <h3>Обещание</h3>
+        <h3>Компонент</h3>
+        <h3>Эффективность</h3>
+      </div>
+
+      <div class="t_body">
+        <% promist.each do |prom| %>
+          <div class="block">
+            <% i = 0 %>
+            <div class="promist">
+              <h4><%= pr = prom.name %></h4>
+            </div>
+            <div class="components">
+              <% structure.each do |comp| %>
+                <% comp.active_effects.each do |ef| %>
+                  <% if ef.name == pr %>
+                    <div class="component">
+                      <h4><%= comp.name %></h4>
+                    </div>
+                    <% i += 1 %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="result">
+              <% if i > 0 %>
+                <p>Да. Имеет хорошие ингредиенты для привлечения воды к коже, а затем "запечатать его в", сохраняя кожу увлажненной с течением времени</p>
+              <% else %>
+                <p>Нет. Эффективные ингредиенты отсутствуют или их концентрация слишком низкая</p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      </div>
+
+      <h3>Состав</h3>
+      <% structure.each do |component| %>
+      <p><%= component.name %></p>
+        <% final_structure.push(component.name) %>
+        <% component_effects = component.active_effects.all %>
+        <% component_effects.each do |effect| %>
+          <% component_aictive_effects.push(effect.name) %>
+        <% end %>
+        <% component_aictive_effects = component_aictive_effects.uniq %>
+      <% end %>
+    </div>
+</main>
+
+<hr>
+<%= link_to "edit", edit_brand_product_path(@product.brand_id, @product.id) %>

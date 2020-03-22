@@ -1,0 +1,88 @@
+.menubar {
+  background-color: #0A0202;
+  padding: 0 80px;
+  width: 92vw;
+  height: 65px;
+  border-bottom: 1px solid #E8D8C6;
+  font-size: 16px;
+  margin-left: -8vw;
+  margin-bottom: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  * {
+    font-family: Pragmatica, sans-serif;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      margin-right: 50px;
+    }
+
+    ul {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+
+      li {
+        text-decoration: none;
+        height: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        div {
+          margin-top: 5px;
+          display: none;
+          width: 5px;
+          height: 5px;
+          border-radius: 5px;
+          background-color: #E8D8C6,
+        }
+
+        &:hover {
+          div {
+            display: block;
+          }
+        }
+      }
+      li + li {
+        margin-left: 80px;
+      }
+    }
+  }
+
+  .rigth {
+    display: flex;
+    align-items: center;
+
+    div + div {
+      margin-left: 15px;
+    }
+    .userInfo {
+      display: flex;
+      align-items: center;
+      a + a {
+        margin-left: 15px;
+      }
+    }
+  }
+
+  a {
+    color: #E8D8C6;
+    text-decoration: none;
+
+    &:hover {
+      color: #E8D8C6;
+      text-decoration: none;
+    }
+    &:visited {
+      color: #E8D8C6;
+    }
+  }
+
+}

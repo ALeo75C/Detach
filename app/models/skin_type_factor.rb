@@ -1,0 +1,2 @@
+class SkinTypeFactor < ApplicationRecord
+end

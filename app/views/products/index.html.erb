@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Каталог</h1>
+<div class="cardsCollection">
+  <% Product.all.each do |product|%>
+    <% @mod = product %>
+    <%= render "productCard" %>
+  <% end %>
+
+</div>

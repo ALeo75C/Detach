@@ -1,0 +1,54 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%#= Brand.find(params[:brand_id]).name%>
+  <div class="field">
+    <% form.label :brand_id %>
+    <%#= hidden_field_tag :brand_id, value: params[:brand_id] %>
+    <%= form.number_field :brand_id, value: params[:brand_id] %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <h3>Обещания</h3>
+  <div class="field">
+    <% ActiveEffect.all.each do |effect| %>
+      <%= check_box_tag('effects[active_effect.id][]', effect.id) %>
+      <%#= check_box_tag(:component_id) %>
+      <%= effect.name %><br>
+    <% end %>
+  </div>
+  <br>
+
+<h3>Состав</h3>
+  <div class="field">
+    <% Component.all.each do |component| %>
+      <%= check_box_tag('components[component.id][]', component.id) %>
+      <%#= check_box_tag(:component_id) %>
+      <%= component.name %><br>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

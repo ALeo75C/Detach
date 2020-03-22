@@ -1,0 +1,181 @@
+body {
+  width: 84vw;
+  overflow-x: hidden;
+  margin: 0 auto;
+  background-color: #E8D8C7;
+
+  * {
+    font-family: Pragmatica, sans-serif;
+  }
+
+  h1 {
+    font-family: Pragmatica_cyr, sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 43px;
+  }
+
+  h2 {
+    font-family: Pragmatica_cyr, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+  }
+
+  h3 {
+    font-family: Pragmatica_cyr, sans-serif;
+    font-size: 22px;
+    color: #30292F;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-family: Pragmatica_cyr, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  p {
+    width: 40vw;
+    font-size: 18px
+  }
+
+  a {
+    font-size: 20px;
+    display: inline-block;
+    text-decoration: none;
+
+    &:hover {
+      background: inherit;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:visited {
+      background: inherit;
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  span {
+    font-size: 16px;
+  }
+
+  .cardsCollection {
+    display: grid;
+    grid-template-columns: repeat(5  , 1fr);
+    grid-gap: 40px;
+    width: 50vw;
+
+  }
+
+  header {
+    margin-bottom: 90px;
+    display: grid;
+    grid-template-columns: repeat(20, 4vw);
+
+    .cover {
+      grid-column: 1/10;
+    }
+
+    .attention {
+      grid-column: 14/21;
+      display: grid;
+      grid-template-columns: repeat(8, 4vw);
+
+      * {
+        grid-column: 1/8;
+      }
+    }
+  }
+
+  .table {
+
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    margin-top: 38px;
+
+    .t_head {
+      width: 100%;
+      grid-column: 1/11;
+      display: grid;
+      grid-template-columns: repeat(10,1fr);
+
+      h3 {
+        &:first-of-type {
+          grid-column: 1/3
+        }
+        &:nth-of-type(2) {
+          grid-column: 4/7
+        }
+        &:last-of-type {
+          grid-column: 8/11
+        }
+      }
+    }
+
+    .t_body {
+      width: 100%;
+      grid-column: 1/11;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+
+      .block {
+        width: 100%;
+        grid-column: 1/11;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        margin-top: 45px;
+
+        .promis {
+          grid-column: 1/3
+        }
+        .components {
+          grid-column: 4/7;
+
+          .component + .component {
+            margin-top: 30px;
+          }
+        }
+        .result {
+          grid-column: 8/11;
+
+          p {
+            width: 100%;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  .brand {
+    display: grid;
+    grid-template-columns: repeat(10, 4vw);
+
+    .brand_cover {
+      grid-column: 1/3;
+
+      p {
+        width: 16vw;
+        color: #6C6B6B;
+      }
+    }
+
+    .brands_list {
+      grid-column: 9/11;
+    }
+
+    .barnd_groop {
+      grid-column: 5/11;
+      width: 32vw;
+      display: grid;
+      grid-template-columns: repeat(2, 12vw);
+      grid-template-rows: 8vw;
+    }
+  }
+}

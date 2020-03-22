@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Favorites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @favorites.each do |favorite| %>
+      <tr>
+        <% product = Product.find(favorite.product_id) %>
+        <td><%=  product.name %></td>
+        <td><%= link_to 'Show', brand_product_path(id: favorite.product_id, brand_id: favorite.product.brand.id) %></td>
+        <td><%#= link_to 'Edit', edit_favorite_path(favorite) %></td>
+        <td><%= link_to 'Destroy', profile_favorite_url(id: favorite.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Favorite', new_favorite_path %>

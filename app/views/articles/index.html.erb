@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Статьи</h1>
+
+<div class="cardsCollection">
+  <% Article.all.each do |art| %>
+    <% @mod = art %>
+    <%= render "articleCard" %>
+  <% end %>
+</div>
+
+
+<% @mes = "Создать статью" %>
+<% @path = new_article_path %>
+<%= render "but" %>

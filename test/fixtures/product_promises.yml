@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  active_effects_id: 1
+  product_id: 1
+
+two:
+  active_effects_id: 1
+  product_id: 1

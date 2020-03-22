@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="brand">
+  <div class="brand_cover">
+    <h1>Бренды</h1>
+
+    <p>Добавьте любимый бренд в избранное чтобы бла-бла ахуенно</p>
+  </div>
+
+  <div class="brands_list">
+    <div class="brands_groop">
+      <h1>Быква</h1>
+      <% @brands.each do |brand| %>
+      <li><%= link_to brand.name, brand %></li>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<br>
+
+<%#= link_to 'New Brand', new_brand_path %>

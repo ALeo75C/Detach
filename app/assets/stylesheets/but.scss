@@ -1,0 +1,26 @@
+.but {
+  margin-top: 90px;
+
+  a {
+    font-family: Pragmatica_cyr,sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #E8D8C7;
+
+    &:hover {
+      color: #E8D8C7;
+    }
+
+    &:visited {
+      color: #E8D8C7;
+    }
+
+    span {
+      background-color: #0A0202;
+      padding: 17px 13px;
+      display: inline-block;
+      min-width: 192px;
+      text-align: center;
+    }
+  }
+}

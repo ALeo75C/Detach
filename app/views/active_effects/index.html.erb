@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Active Effects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @active_effects.each do |active_effect| %>
+      <tr>
+        <td><%= active_effect.name %></td>
+        <td><%= link_to 'Show', active_effect %></td>
+        <td><%= link_to 'Edit', edit_active_effect_path(active_effect) %></td>
+        <td><%= link_to 'Destroy', active_effect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Active Effect', new_active_effect_path %>

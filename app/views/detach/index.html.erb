@@ -1,0 +1,41 @@
+
+<div class="mainCover">
+  <% Article.all.each do |art| %>
+    <div class="info">
+      <h1><%= art.header %></h1>
+      <p><%= art.content %></p>
+      <% @mes = "Читать статью" %>
+      <% @path = article_path(art.id) %>
+      <%= render "but" %>
+    </div>
+    <div class="">
+      <%= image_tag(asset_path("cover.jpg")) %>
+
+    </div>
+  <% end %>
+</div>
+
+
+<% @h2 = 'Новинки' %>
+<% @cla = Product %>
+<% @cardType = "productCard" %>
+<% @mes = 'Показать все' %>
+<% @rout = products_path %>
+
+<%= render "block" %>
+
+
+<% @h2 = 'Бренды' %>
+<% @cla = Brand %>
+<% @cardType = "brandCard" %>
+<% @rout = brands_path %>
+
+<%= render "block" %>
+
+
+<% @h2 = 'Статьи' %>
+<% @cla = Article %>
+<% @cardType = "articleCard" %>
+<% @rout = articles_path %>
+
+<%= render "block" %>

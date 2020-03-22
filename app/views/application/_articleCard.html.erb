@@ -1,0 +1,15 @@
+<div class="acticleCard">
+  <%= link_to (article_path(@mod)) do %>
+    <div class="info">
+      <p>Статья</p>
+      <h3><%= @mod.header %></h3>
+      <p>Читать статью</p>
+    </div>
+    <div class="image">
+      <div class="shadow">
+
+      </div>
+      <%= image_tag @mod.cover.url unless @mod.cover.url == nil %>
+    </div>
+  <% end %>
+</div>

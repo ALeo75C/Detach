@@ -1,0 +1,19 @@
+.article {
+
+  img {
+    margin-bottom: 40px;
+    width: 780px;
+  }
+
+  .butCollection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25vw;
+
+    .but:first-of-type span {
+      background-color: #F4EBDB;
+      color: #0A0202;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+<%= link_to(brand_path(@mod.id)) do %>
+  <div class="brandCard">
+    <%= image_tag @mod.logo.url unless @mod.logo.url == nil %>
+    <h3><%= @mod.name %></h3>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<div class="menubar">
+  <div class="left">
+    <div class="logo">
+      <%= link_to image_tag(asset_path("logos/LogoFull.png")), root_path %></li>
+    </div>
+    <ul>
+      <li><%= link_to 'О нас', detach_landing_path %><div></div></li>
+      <li><%= link_to "Каталог", products_path %><div></div></li>
+      <li><%= link_to "Бренды", brands_path %><div></div></li>
+      <li><%= link_to "Статьи", articles_path %><div></div></li>
+    </ul>
+  </div>
+
+  <div class="rigth">
+      <% if user_signed_in? %>
+        <div class="cearth">
+        <%= image_tag(asset_path("icons/loup/inactive.png")) %>
+      </div>
+        <div class="userInfo">
+        <%= link_to(image_tag(asset_path("icons/follow/staticWhite.png")), profile_favorites_path(current_user.profile.id)) %>
+        <%= link_to(image_tag(asset_path("icons/profile/inactive.png")), profile_path(current_user.id)) %>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+      </div>
+      <% else %>
+        <div class="cearth">
+          <%= image_tag(asset_path("icons/loup/inactive.png")) %>
+        </div>
+        <div class="userInfo">
+          <%= link_to('Login', new_user_session_path) %>
+          <%= link_to('Sign Up', new_user_registration_path) %>
+        </div>
+      <% end %>
+  </div>
+
+</div>
