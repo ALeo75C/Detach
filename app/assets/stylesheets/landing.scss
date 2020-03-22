@@ -1,6 +1,80 @@
 .landing {
+  .info {
+    margin-top: 60px;
+
+    .skreen {
+      position: relative;
+      width: 84vw;
+
+      .but {
+        margin-top: 60px;
+      }
+
+      .content {
+        position: absolute;
+        width: 560px;
+
+        p {
+          width: 560px
+        }
+      }
+
+      &:nth-of-type(2n+1){
+        color: #E8D8C7;
+
+        .content {
+          left: 0;
+        }
+
+        .but a span {
+          background-color: #E8D8C7;
+          color: #0A0202;
+        }
+      }
+
+      &:nth-of-type(2n){
+
+        .content {
+          right: 0;
+        }
+
+      }
+
+      &:nth-of-type(1) {
+        height: 53vw;
+        .content {
+          top: 172px;
+        }
+      }
+      &:nth-of-type(2) {
+        height: 58vw;
+        .content {
+          top: 208px;
+        }
+      }
+      &:nth-of-type(3) {
+        height: 64vw;
+        .content {
+          top: 264px;
+        }
+      }
+      &:nth-of-type(4) {
+        height: 55vw;
+        .content {
+          top: 244px;
+        }
+      }
+      &:nth-of-type(5) {
+        height: 73vw;
+        .content {
+          top: 378px;
+        }
+      }
+    }
+  }
   img {
     position: absolute;
+    top: 145px;
     z-index: -1;
     width: 100vw;
     margin-left: -8vw;
