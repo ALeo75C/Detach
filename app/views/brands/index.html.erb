@@ -1,18 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 
-<div class="brand">
-  <div class="brand_cover">
+<div class="brands">
+  <div class="brands_fav">
     <h1>Бренды</h1>
 
-    <p>Добавьте любимый бренд в избранное чтобы бла-бла ахуенно</p>
+    <p>Добавьте любимый бренд в избранное чтобы следить за его новинками</p>
   </div>
 
   <div class="brands_list">
-    <div class="brands_groop">
-      <h1>Быква</h1>
+    <h1>Быква</h1>
+      <div class="brands_grup">
       <% @brands.each do |brand| %>
-      <li><%= link_to brand.name, brand %></li>
+        <%= link_to brand do%>
+          <div class="brand">
+            <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+            <p><%= brand.name %></p>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -24,4 +29,6 @@
 
 <br>
 
-<%#= link_to 'New Brand', new_brand_path %>
+<% @mes = "Новый бренд" %>
+<% @rout = new_brand_path %>
+<%= render "but" %>

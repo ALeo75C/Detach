@@ -1,24 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<div class="article">
-
-  <h1>
-    <%= @article.header %>
-  </h1>
-
-  <%= image_tag @article.cover.url unless @article.cover.url == nil %>
-
-  <p>
-    <%= @article.content %>
-  </p>
-
-  <div class="butCollection">
-    <% @mes = "Изменить статью" %>
-    <% @path = edit_article_path(@article) %>
-    <%= render "but" %>
-    <% @mes = "Назад" %>
-    <% @path = articles_path %>
-    <%= render "but" %>
-
+<div class="arti">
+  <div class="article_nav">
+    <%= link_to articles_path do %>
+      <h3>Все статьи</h3>
+    <% end %>
+    <ul>
+      <% Article.all.each do |ar| %>
+        <% if ar.id == @article.id %>
+          <%= link_to ar.header, article_path(ar.id), style: 'font-weight: bold;' %>
+        <% else %>
+          <%= link_to ar.header, article_path(ar.id)%>
+        <% end %>
+      <% end %>
+    </ul>
   </div>
+  <div class="article_cont">
+
+    <h1>
+      <%= @article.header %>
+    </h1>
+
+    <%= image_tag @article.cover.url unless @article.cover.url == nil %>
+
+    <p>
+      <%= @article.content %>
+    </p>
+
+    <div class="butCollection">
+      <% @mes = "Изменить статью" %>
+      <% @path = edit_article_path(@article) %>
+      <%= render "but" %>
+      <% @mes = "Назад" %>
+      <% @path = articles_path %>
+      <%= render "but" %>
+
+    </div>
+
+</div>
 </div>

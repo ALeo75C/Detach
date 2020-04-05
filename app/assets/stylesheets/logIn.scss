@@ -1,0 +1,56 @@
+.user {
+  width: 500px;
+  padding: 50px 100px;
+  margin: 0 auto;
+  background: #0A0202;
+  color: #E8D8C6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &.log_in {
+  .field:nth-of-type(3) {
+    display: flex;
+    align-items: baseline;
+    width: 150px;
+    justify-content: space-between;
+
+    input {
+      width: auto;
+      height: auto;
+    }
+  }
+}
+
+  h2 {
+    margin-bottom: 50px;
+  }
+
+  form {
+    width: 500px;
+    .field {
+      padding: 0;
+      input {
+        width: 480px;
+        height: 43px;
+        border: none;
+        border-bottom: solid #E8D8C6 1px;
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+    .field +.field {
+      margin-top: 30px;
+    }
+  }
+
+  .links {
+    display: flex;
+    margin-top: 50px;
+    a {
+      font-size: 16px;
+
+    }
+    a + a {
+      margin-left: 50px;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 
 <div class="mainCover">
-  <% Article.all.each do |art| %>
+  <% Article.find() do |art| %>
     <div class="info">
       <h1><%= art.header %></h1>
       <p><%= art.content %></p>
@@ -21,21 +21,24 @@
 <% @cardType = "productCard" %>
 <% @mes = 'Показать все' %>
 <% @rout = products_path %>
+<% @imagePath = "pattern1.png" %>
 
-<%= render "block" %>
+<%= render "productBlock" %>
 
 
 <% @h2 = 'Бренды' %>
 <% @cla = Brand %>
 <% @cardType = "brandCard" %>
 <% @rout = brands_path %>
+<% @imagePath = "pattern2.png" %>
 
-<%= render "block" %>
+<%= render "productBlock" %>
 
 
 <% @h2 = 'Статьи' %>
 <% @cla = Article %>
 <% @cardType = "articleCard" %>
 <% @rout = articles_path %>
+<% @imagePath = "pattern1.png" %>
 
-<%= render "block" %>
+<%= render "articleBlock" %>

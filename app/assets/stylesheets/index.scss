@@ -1,6 +1,6 @@
 .mainCover {
   width: 100vw;
-  height: 70vh;
+  height: 40vw;
   overflow: hidden;
   margin-left: -8vw;
   background-color: #F4EBDB;
@@ -8,11 +8,13 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 95px;
+  position: relative;
 
   .info {
     margin-top: 128px;
     margin-left: 8vw;
     width: 525px;
+    z-index: 3;
 
     p {
       width: 525px;
@@ -20,7 +22,11 @@
   }
 
   img {
-    width: 50vw;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
   }
 
 }

@@ -9,7 +9,11 @@
       <div class="shadow">
 
       </div>
-      <%= image_tag @mod.cover.url unless @mod.cover.url == nil %>
+      <% if @mod.cover.url %>
+        <%= image_tag @mod.cover.url%>
+      <% else %>
+        <%= image_tag asset_path("asep1.jpg")%>
+      <% end %>
     </div>
   <% end %>
 </div>

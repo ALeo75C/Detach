@@ -1,5 +1,6 @@
 <div class="landing">
   <div class="info">
+    <%= image_tag(asset_path("forLanding/header.png"), :class => "first") %>
     <div class="skreen">
       <div class="content">
         <h1>Истинная красота начинается со здоровья</h1>
@@ -17,14 +18,30 @@
         <% @path = detach_index_path %>
         <%= render 'but' %>
       </div>
+
+      <%= image_tag(asset_path("forLanding/mobile.png")) %>
     </div>
     <div class="skreen">
-      <div class="content">
-        <h1>Уверенность – это верность себе</h1>
-        <p>Уверенность – неотъемлемый этап на пути любви к себе. Ознакомьтесь с информацией о составе понравившегося продукта и забудьте о сомнениях, связанных с эффективностью товара.</p>
-        <% @mes = 'Подобрать продукт' %>
-        <% @path = products_path %>
-        <%= render 'but' %>
+      <div class="column">
+        <div class="img">
+          <%= image_tag(asset_path("forLanding/symb1.png")) %>
+        </div>
+        <h3>Совершайте покупки с выгодой</h3>
+        <p>Не отказывайте себе в покупке любимых косметических средств. Приобретайте выгодно, сравнивая цены в интернет-магазинах через наш сервис.</p>
+      </div>
+      <div class="column">
+        <div class="img">
+          <%= image_tag(asset_path("forLanding/symb2.png")) %>
+        </div>
+        <h3>Узнавайте больше нового о мире бьюти</h3>
+        <p>В статьях собрана информация, которая поможет разобраться в тонкостях производства косметической продукции.</p>
+      </div>
+      <div class="column">
+        <div class="img">
+          <%= image_tag(asset_path("forLanding/symb3.png")) %>
+        </div>
+        <h3>Ваш выбор всегда верный</h3>
+        <p>Проверьте эффективность и состав продукта и будьте уверены в выборе косметического средства.</p>
       </div>
     </div>
     <div class="skreen">
@@ -35,6 +52,19 @@
         <% @path = products_path %>
         <%= render 'but' %>
       </div>
+      <%= image_tag(asset_path("forLanding/table.png")) %>
+    </div>
+    <div class="skreen">
+      <div class="content">
+        <h1>Уверенность – это верность себе</h1>
+        <p>Уверенность – неотъемлемый этап на пути любви к себе. Ознакомьтесь с информацией о составе понравившегося продукта и забудьте о сомнениях, связанных с эффективностью товара.</p>
+        <% @mes = 'Пройти тест' %>
+        <% @path = detach_index_path %>
+        <%= render 'but' %>
+      </div>
+      <div class="image">
+        <%= image_tag(asset_path("forLanding/table2.png")) %>
+      </div>
     </div>
     <div class="skreen">
       <div class="content">
@@ -44,12 +74,17 @@
         <% @path = detach_index_path %>
         <%= render 'but' %>
       </div>
+      <div class="image">
+        <%= image_tag(asset_path("forLanding/ann.png")) %>
+        <span></span>
+      </div>
     </div>
-
   </div>
-
-  <%= image_tag(asset_path("landing.jpg")) %>
-
-
-
+  <div class="fot">
+    <%= image_tag(asset_path("forLanding/footer.png")) %>
+    <div class="content">
+      <h1>Забота о себе и своем здоровье еще проще с нашим приложением</h1>
+      <%= image_tag(asset_path("forLanding/app.png")) %>
+    </div>
+  </div>
 </div>

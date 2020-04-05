@@ -14,11 +14,19 @@
   <div class="rigth">
       <% if user_signed_in? %>
         <div class="cearth">
-        <%= image_tag(asset_path("icons/loup/inactive.png")) %>
-      </div>
+            <%= image_tag(asset_path("icons/loup/inactive.png")) %>
+        </div>
         <div class="userInfo">
-        <%= link_to(image_tag(asset_path("icons/follow/staticWhite.png")), profile_favorites_path(current_user.profile.id)) %>
-        <%= link_to(image_tag(asset_path("icons/profile/inactive.png")), profile_path(current_user.id)) %>
+          <%= link_to (profile_favorites_path(current_user.profile.id)) do %>
+            <div class="icon follow">
+              <%= image_tag(asset_path("icons/follow/staticWhite.png")) %>
+            </div>
+          <% end %>
+          <%= link_to(profile_path(current_user.id)) do %>
+            <div class="icon profile">
+              <%= image_tag(asset_path("icons/profile/inactive.png")) %>
+            </div>
+          <% end %>
         <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
       </div>
       <% else %>

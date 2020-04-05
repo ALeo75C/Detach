@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2020_03_19_183533) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
-    t.string "small_description"
     t.string "type"
   end
 

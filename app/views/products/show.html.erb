@@ -92,6 +92,7 @@
       <h3>Состав</h3>
       <% structure.each do |component| %>
       <p><%= component.name %></p>
+      <span><%#= component.to_json %></span>
         <% final_structure.push(component.name) %>
         <% component_effects = component.active_effects.all %>
         <% component_effects.each do |effect| %>

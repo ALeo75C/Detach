@@ -1,3 +1,76 @@
-// Place all the styles related to the brands controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.brandPage {
+  .cover {
+    margin-bottom: 120px;
+    display: flex;
+
+    img {
+      width: 430px;
+      margin-right: 123px;
+    }
+
+    .info {
+      h3 {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  h2 {
+    margin-bottom: 90px;
+  }
+}
+
+
+
+.brands {
+  display: grid;
+  grid-template-columns: repeat(10, 4vw);
+
+  .brands_fav {
+    grid-column: 1/3;
+
+    p {
+      width: 16vw;
+      color: #6C6B6B;
+    }
+  }
+
+  .brands_list {
+    min-height: 36.5vh;
+    grid-column: 9/11;
+    h1 {
+      margin-bottom: 5px;
+    }
+  }
+
+  .brands_grup {
+    grid-column: 5/11;
+    // width: 32vw;
+    display: grid;
+    grid-template-columns: repeat(2, 14vw);
+    // grid-template-rows: 8vw;
+
+    .brand {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 30px;
+
+      &:hover {
+        img {
+          display: block;
+        }
+      }
+
+      img {
+        padding-right: 40px;
+        margin-left: -66px;
+        display: none;
+      }
+      p {
+        width: 180px;
+      }
+    }
+  }
+}

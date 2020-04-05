@@ -1,0 +1,15 @@
+<div class="block articles">
+  <div class="pattern">
+    <%= image_tag(asset_path(@imagePath)) %>
+  </div>
+  <div class="content">
+    <h2><%= @h2 %></h2>
+    <div class="cardsCollection">
+      <% @cla.all.sample(4).each do |el| %>
+      <% @mod = el %>
+      <%= render @cardType %>
+      <% end %>
+    </div>
+    <%= render "but" %>
+  </div>
+</div>

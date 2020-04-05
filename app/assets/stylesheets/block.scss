@@ -1,7 +1,17 @@
 .block {
-  h2 {
-    margin-bottom: 40px;
+  // margin-left: -65px;
+  display: flex;
+  align-items: flex-start;
+  .pattern {
+    margin-right: 65px;
   }
+
+  .content {
+    h2 {
+      margin-bottom: 40px;
+    }
+  }
+
 }
 
 .block + .block {

@@ -2,7 +2,7 @@
 
 <h1>Статьи</h1>
 
-<div class="cardsCollection">
+<div class="cardsCollection articles">
   <% Article.all.each do |art| %>
     <% @mod = art %>
     <%= render "articleCard" %>
@@ -10,6 +10,6 @@
 </div>
 
 
-<% @mes = "Создать статью" %>
-<% @path = new_article_path %>
+<% @mes = "Новая статья" %>
+<% @rout = new_article_path %>
 <%= render "but" %>

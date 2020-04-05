@@ -1,31 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="brandPage">
+
+  <div class="cover">
+    <%= image_tag @brand.logo.url unless @brand.logo.url == nil %>
+    <div class="info">
+      <h1><%= @brand.name %></h1>
+      <h3>Описание бренда</h3>
+      <p><%= @brand.description %></p>
+
+      <% @mes = "Редактировать" %>
+      <% @rout = edit_brand_path %>
+      <%= render "but" %>
+    </div>
+  </div>
+
+  <p>
+    <%= @brand.site %>
+  </p>
+
+  <h2>Продукты</h2>
 
 
-<%= image_tag @brand.logo.url unless @brand.logo.url == nil %>
-<p>
-  <%= @brand.name %>
-</p>
-
-<p>
-  <%= @brand.description %>
-</p>
-
-<p>
-  <%= @brand.site %>
-</p>
-
-<hr>
-<%= link_to "edit", edit_brand_path %>
-<hr>
-
-<h2>Продукты</h2>
-
-<ul>
-  <% @brand.products.each do |product| %>
-    <li><%= link_to product.name, brand_product_path(@brand.id, product.id) %></li>
-    <%= link_to 'Destroy', brand_product_url(id: product.id, brand_id: product.brand_id), method: :delete %>
-  <% end %>
-</ul>
-
-<hr>
-<%= link_to 'New Product', new_brand_product_path(@brand) %>
+  <div class="cardsCollection">
+    <% @brand.products.each do |product|%>
+      <% @mod = product %>
+      <%= render "productCard" %>
+    <% end %>
+  </div>
+  <br>
+  <% @mes = "Новый продукт" %>
+  <% @rout = new_brand_product_path(@brand) %>
+  <%= render "but" %>
+</div>
