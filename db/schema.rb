@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_183533) do
+ActiveRecord::Schema.define(version: 2020_04_08_145130) do
 
   create_table "active_effects", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_183533) do
     t.string "header"
     t.text "content"
     t.string "cover"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -56,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_183533) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "followings", force: :cascade do |t|
+  create_table "follows", force: :cascade do |t|
     t.integer "brand_id"
     t.integer "profile_id"
     t.datetime "created_at", precision: 6, null: false
@@ -84,12 +85,15 @@ ActiveRecord::Schema.define(version: 2020_03_19_183533) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
-    t.string "type"
+    t.string "view"
   end
 
   create_table "profiles", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
+    t.integer "skin_type_id"
+    t.integer "age"
+    t.string "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

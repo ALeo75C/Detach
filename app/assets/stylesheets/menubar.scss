@@ -8,7 +8,7 @@
   height: 65px;
   border-bottom: 1px solid #E8D8C6;
   font-size: 16px;
-  margin-left: -8vw;
+  margin-left: -180px;
   margin-bottom: 85px;
   display: flex;
   justify-content: space-between;
@@ -78,6 +78,9 @@
   a {
     color: #E8D8C6;
     text-decoration: none;
+    &.active {
+      font-weight: bold;
+    }
 
     &:hover {
       color: #E8D8C6;

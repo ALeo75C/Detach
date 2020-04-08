@@ -1,16 +1,21 @@
 Rails.application.routes.draw do
   resources :articles
+
   devise_for :users do
     resources :profiles
   end
+
   resources :profiles do
     resources :favorites
+    resources :follows
   end
+
   resources :brands do
     resources :products
   end
-  resources :components
-  resources :active_effects
+
+  # resources :components
+  # resources :active_effects
   resources :products
 
   # root"detach#landing"

@@ -1,15 +1,46 @@
-<p id="notice"><%= notice %></p>
+<h1>Личная информация</h1>
+<div class="profile">
+    <div class="cover">
+      <div class="image">
+        <% if @profile.avatar.url %>
+          <%= image_tag @profile.avatar.url %>
+        <% else %>
+          <%= image_tag asset_path("apsent.jpg") %>
+        <% end %>
+        <div class="strouke"></div>
+      </div>
+      <div class="nav">
+        <ul>
+          <li>
+            <h4><%= link_to "Избранное", profile_favorites_path(@profile) %></h4>
+          </li>
+          <li>
+            <h4><%= link_to "Редактировать", edit_profile_path(@profile)%></h4>
+          </li>
+          <li>
+            <h4><%= link_to "Изменить пароль", edit_profile_path %></h4>
+          </li>
+          <li>
+            <h4><%= link_to('Выйти', destroy_user_session_path, method: :delete) %></h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="info">
+      <div class="point">
+        <p><%= @profile.name %></p>
+      </div>
+      <div class="point">
+        <p><%= @profile.user.email %></p>
+      </div>
+      <div class="point">
+        <p><%= @profile.age %></p>
+      </div>
+      <div class="point">
+        <p><%= @profile.skin_type.name%></p>
+      </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @profile.name %>
-</p>
-
-
-<p> Тип кожи:</p>
-<p>
-  <%= @profile.user.skin_types.first.name%>
-</p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+      <h3>Дополнительная информация</h3>
+      
+    </div>
+</div>

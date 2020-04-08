@@ -1,5 +1,11 @@
 <div class="but">
-  <%= link_to @rout do %>
+  <% if @method %>
+    <%= link_to @rout, method: @method do %>
     <span><%= @mes %></span>
+    <% end %>
+  <% else %>
+    <%= link_to @rout do %>
+    <span><%= @mes %></span>
+    <% end %>
   <% end %>
 </div>

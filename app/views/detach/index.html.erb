@@ -3,7 +3,7 @@
   <% Article.find() do |art| %>
     <div class="info">
       <h1><%= art.header %></h1>
-      <p><%= art.content %></p>
+      <p><%= art.description %></p>
       <% @mes = "Читать статью" %>
       <% @path = article_path(art.id) %>
       <%= render "but" %>

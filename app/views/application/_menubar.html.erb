@@ -4,10 +4,42 @@
       <%= link_to image_tag(asset_path("logos/LogoFull.png")), root_path %></li>
     </div>
     <ul>
-      <li><%= link_to 'О нас', detach_landing_path %><div></div></li>
-      <li><%= link_to "Каталог", products_path %><div></div></li>
-      <li><%= link_to "Бренды", brands_path %><div></div></li>
-      <li><%= link_to "Статьи", articles_path %><div></div></li>
+      <li>
+        <% if controller.class == DetachController && controller.action_name != "index" %>
+          <%= link_to "О нас", detach_landing_path, class: "active" %>
+          <div></div>
+        <% else %>
+          <%= link_to "О нас", detach_landing_path %>
+          <% end %>
+        <div></div>
+      </li>
+      <li>
+        <% if controller.class == ProductsController %>
+          <%= link_to "Каталог", products_path, class: "active" %>
+          <div></div>
+        <% else %>
+          <%= link_to "Каталог", products_path %>
+          <% end %>
+        <div></div>
+      </li>
+      <li>
+        <% if controller.class == BrandsController %>
+          <%= link_to "Бренды", brands_path, class: "active" %>
+          <div></div>
+        <% else %>
+          <%= link_to "Бренды", brands_path %>
+          <% end %>
+        <div></div>
+      </li>
+      <li>
+        <% if controller.class == ArticlesController %>
+          <%= link_to "Статьи", articles_path, class: "active" %>
+          <div></div>
+        <% else %>
+          <%= link_to "Статьи", articles_path %>
+          <% end %>
+        <div></div>
+      </li>
     </ul>
   </div>
 
@@ -18,16 +50,23 @@
         </div>
         <div class="userInfo">
           <%= link_to (profile_favorites_path(current_user.profile.id)) do %>
-            <div class="icon follow">
+          <div class="icon follow">
+            <% if controller.class ==  FavoritesController%>
+              <%= image_tag(asset_path("icons/follow/activeWhite.png")) %>
+            <% else %>
               <%= image_tag(asset_path("icons/follow/staticWhite.png")) %>
+            <% end %>
             </div>
           <% end %>
           <%= link_to(profile_path(current_user.id)) do %>
             <div class="icon profile">
-              <%= image_tag(asset_path("icons/profile/inactive.png")) %>
+              <% if controller.class == ProfilesController%>
+                <%= image_tag(asset_path("icons/profile/active.png")) %>
+              <% else %>
+                <%= image_tag(asset_path("icons/profile/inactive.png")) %>
+              <% end %>
             </div>
           <% end %>
-        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
       </div>
       <% else %>
         <div class="cearth">

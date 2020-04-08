@@ -1,0 +1,88 @@
+.profile {
+  display: flex;
+  .cover {
+    .image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 248px;
+      height: 248px;
+      position: relative;
+      img {
+        position: absolute;
+        width: 218px;
+        border-radius: 100%;
+      }
+      .strouke {
+        border: solid 1px #000;
+        width: 248px;
+        height: 248px;
+        border-radius: 100%;
+      }
+    }
+
+    .nav {
+      margin-top: 50px;
+      margin-left: 60px;
+
+
+      li {
+        a:hover {
+          text-decoration: underline;
+        }
+        h4 {
+          font-weight: bold;
+
+        }
+
+        &:last-of-type {
+          margin-top: 50px;
+          opacity: 50%;
+        }
+      }
+      li + li {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .info {
+    margin-top: 50px;
+    margin-left: 170px;
+    .point {
+      width: 480px;
+      height: 43px;
+      display: flex;
+      border-bottom: solid 1px #000;
+      align-items: flex-start;
+      p {
+        margin-left: 12px;
+      }
+
+      input, select {
+        background: rgba(0, 0, 0, 0);
+        border: none;
+        width: 100%;
+      }
+    }
+    .point + .point {
+      margin-top: 50px;
+    }
+    .but {
+      margin: 30px 0;
+      input {
+        background: #0A0202;
+        border: none;
+        color: #E8D8C7;
+        padding: 17px 13px;
+        min-width: 192px;
+        font-family: Pragmatica_cyr,sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+    h3 {
+      margin-top: 80px;
+    }
+  }
+}

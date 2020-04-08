@@ -1,23 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-
 <div class="brands">
   <div class="brands_fav">
     <h1>Бренды</h1>
 
-    <p>Добавьте любимый бренд в избранное чтобы следить за его новинками</p>
+    <% if Profile.find(current_user.id).follows.count > 0 %>
+      <% Profile.find(current_user.id).follows.all.each do |follow| %>
+        <% brand = Brand.find(follow.brand_id) %>
+        <div class="brand">
+          <%= link_to brand do%>
+          <p><%= brand.name %></p>
+          <% end %>
+          <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
+          <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Добавьте любимый бренд в избранное чтобы следить за его новинками</p>
+    <% end %>
+
+
   </div>
 
   <div class="brands_list">
     <h1>Быква</h1>
       <div class="brands_grup">
-      <% @brands.each do |brand| %>
-        <%= link_to brand do%>
+        <% @brands.each do |brand| %>
           <div class="brand">
-            <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
-            <p><%= brand.name %></p>
+            <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
+              <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+            <% end %>
+            <%= link_to brand do%>
+              <p><%= brand.name %></p>
+            <% end %>
           </div>
-        <% end %>
       <% end %>
     </div>
   </div>

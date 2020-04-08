@@ -6,9 +6,6 @@ class User < ApplicationRecord
 
   has_one :profile
 
-  has_many :personal_factors
-  has_many :skin_types, through: :personal_factors
-
   has_many :favorites
   has_many :products, through: :favorites
 

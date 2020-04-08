@@ -5,7 +5,7 @@ class Brand < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  has_many :following
+  has_many :follows
   has_many :profiles, through: :following
 
 end
