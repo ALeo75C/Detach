@@ -4,7 +4,7 @@
 <% @er = 0 %>
 <% @product.structure.each do |point| %>
   <% component = Component.find(point.component_id) %>
-  <% if component.allergen > 0 %>
+  <% if component.allergen %>
     <% @al = @al + 1 %>
   <% end %>
   <% ar = Array.new %>
@@ -206,7 +206,7 @@
               <div class="w70"></div>
               <% elsif @ac < 90 %>
               <div class="w80"></div>
-              <% elsif @ac < 100 %>
+              <% elsif @ac < 101 %>
               <div class="w90"></div>
               <% end %>
               <h3><%= @ac %>%</h3>
@@ -236,7 +236,7 @@
               <div class="w70"></div>
               <% elsif @er < 90 %>
               <div class="w80"></div>
-              <% elsif @er < 100 %>
+              <% elsif @er < 101 %>
               <div class="w90"></div>
               <% end %>
               <h3><%= @er %>%</h3>
@@ -266,7 +266,7 @@
               <div class="w70"></div>
               <% elsif @al < 90 %>
               <div class="w80"></div>
-              <% elsif @al < 100 %>
+              <% elsif @al < 101 %>
               <div class="w90"></div>
               <% end %>
               <h3><%= @al %>%</h3>
@@ -296,7 +296,7 @@
             <div class="w70"></div>
             <% elsif @fo < 90 %>
             <div class="w80"></div>
-            <% elsif @fo < 100 %>
+            <% elsif @fo < 101 %>
             <div class="w90"></div>
             <% end %>
             <h3><%= @fo %>%</h3>
