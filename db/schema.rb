@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_145130) do
+ActiveRecord::Schema.define(version: 2020_04_11_103738) do
 
   create_table "active_effects", force: :cascade do |t|
     t.string "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_145130) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "allergen"
   end
 
   create_table "diets", force: :cascade do |t|
@@ -125,12 +126,8 @@ ActiveRecord::Schema.define(version: 2020_04_08_145130) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "structures", force: :cascade do |t|
-    t.integer "component_id"
-    t.integer "product_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+# Could not dump table "structures" because of following StandardError
+#   Unknown type 'sring' for column 'role'
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

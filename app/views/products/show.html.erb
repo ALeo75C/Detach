@@ -1,71 +1,138 @@
-<p id="notice"><%= notice %></p>
-
-<header>
-  <div class="cover">
-    <div class="image"><%= image_tag @product.image.url unless @product.image.url == nil %></div>
-    <h3>Сравните цены и закажите товар по выгодной цене</h3>
-  </div>
-
-  <div class="attention">
-    <h1><%= @product.name %></h1>
-    <div class="block">
-      <p>Может вызвать аллергию</p>
-    </div>
-    <div class="block">
-      <div class="im"></div>
-      <p>Может не соответствовать описанию</p>
-    </div>
-    <div class="tags">
-      <h4>Подходит для типов кожи</h4>
-      <h4>Возможны проблемы</h4>
-    </div>
-    <div class="check">
-      <div class="rab"></div>
-      <p></p>
-    </div>
-    <div>
-      <% if current_user %>
-        <%= link_to 'Добавить в избранное', profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id), method: :post%>
+<% @al = 0 %>
+<% @ac = 0 %>
+<% @fo = 0 %>
+<% @er = 0 %>
+<% @product.structure.each do |point| %>
+  <% component = Component.find(point.component_id) %>
+  <% if component.allergen > 0 %>
+    <% @al = @al + 1 %>
+  <% end %>
+  <% ar = Array.new %>
+  <% component.active_effects.each do |l| %>
+    <% ar.push(l.name) %>
+  <% end %>
+  <%i = ar.count %>
+  <% ar.each do |a| %>
+    <% @product.active_effects.each do |effect| %>
+      <% if effect.name == a %>
+        <% point.role = "Active" %>
+        <% @ac = @ac + 1 %>
+        <% ar.delete(a) %>
       <% end %>
+    <% end %>
+  <% end %>
+
+  <% if ar.count == i %>
+  <% i = ar.count %>
+    <% ar.each do |a| %>
+      <% @product.active_effects.each do |effect| %>
+        <% if a == "Формула поддержки" %>
+          <% point.role = "Form" %>
+          <% @fo = @fo + 1 %>
+          <% ar.delete(a) %>
+          <% ar %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if ar.count == i %>
+      <% point.role = "Eritate" %>
+      <% @er = @er + 1 %>
+  <% end %>
+<% end %>
+
+<div class="productPage">
+  <div class="cover">
+    <div class="image">
+      <%= image_tag @product.image.url unless @product.image.url == nil %>
+    </div>
+
+    <div class="attention">
+      <h1><%= @product.name %></h1>
+      <% if @al > 0 %>
+        <div class="block red">
+          <%= image_tag asset_path("icons/productCharacter/badEvitation.png") %>
+          <p>В составе содержатся компоненты, вызывающие аллергию</p>
+        </div>
+      <% else %>
+        <div class="block green">
+          <%= image_tag asset_path("icons/productCharacter/godEvitation.png") %>
+          <p>В составе продеукта нет аллергенов</p>
+        </div>
+      <% end %>
+      <% if @al < @product.active_effects.count %>
+        <div class="block red">
+          <%= image_tag asset_path("icons/productCharacter/badEffect.png") %>
+          <p>Продукт может не соответствовать заявленным ожиданиям</p>
+        </div>
+      <% else %>
+        <div class="block green">
+          <%= image_tag asset_path("icons/productCharacter/godEffect.png") %>
+          <p>Продукт полностью выполняет заявленные обещания</p>
+        </div>
+      <% end %>
+      <div class="block">
+      </div>
+      <div class="tags">
+        <h4>Подходит для типов кожи</h4>
+        <div class="tagList">
+          <span>Нормальная</span>
+          <span>Сухая</span>
+          <span>Жирная</span>
+          <span>Комбинированная</span>
+        </div>
+      </div>
+      <div class="block">
+        <%= image_tag asset_path("icons/productCharacter/test.png") %>
+        <p>Продукт не тестирован на животных</p>
+      </div>
+      <div class="block">
+        <%= image_tag asset_path("icons/productCharacter/eco.png") %>
+        <p>Эко-упаковка</p>
+      </div>
+      <div class="buttuns">
+        <% @mes = "Сравнить цены" %>
+        <% @rout = edit_brand_product_path(@product.brand_id, @product.id) %>
+        <%= render "but" %>
+        <% if current_user %>
+          <% @mes = "Добавить в избранное" %>
+          <% @rout = profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id) %>
+          <% @method = :post %>
+          <%= render "but" %>
+        <% else %>
+          <% @mes = "Добавить в избранное" %>
+          <% @rout = new_user_session_path %>
+          <%= render "but" %>
+        <% end %>
+      </div>
     </div>
   </div>
-</header>
 
+  <div class="content">
+    <h2>Описание продукта</h2>
+    <p><%= @product.description %></p>
 
-<main>
-  <h2>Описание продукта</h2>
-  <p><%= @product.description %></p>
+    <!-- Вывести бесполезные элемнты -->
 
-  <!-- Вывести бесполезные элемнты -->
+    <div class="structure">
+      <div class="table">
 
-  <div class="structure">
-    <% final_structure = Array.new %>
-    <% product_promise = Array.new %>
-    <% component_aictive_effects = Array.new %>
-    <% stimuli = Array.new %>
-    <% support = Array.new %>
-    <% active_components_final = Array.new %>
-    <% active_components = Array.new %>
-    <% structure = @product.components.all %>
+        <div class="t_head">
+          <h2>Обещание</h2>
+          <h2>Компонент</h2>
+          <h2>Эффективность</h2>
+        </div>
 
-    <% promist = @product.active_effects.all %>
-    <div class="table">
-
-      <div class="t_head">
-        <h3>Обещание</h3>
-        <h3>Компонент</h3>
-        <h3>Эффективность</h3>
-      </div>
-
-      <div class="t_body">
-        <% promist.each do |prom| %>
+        <div class="t_body">
+          <% @product.active_effects.all.each do |prom| %>
           <div class="block">
             <% i = 0 %>
             <div class="promist">
-              <h4><%= pr = prom.name %></h4>
+              <h3><%= pr = prom.name %></h3>
             </div>
             <div class="components">
-              <% structure.each do |comp| %>
+              <% @product.components.each do |comp| %>
                 <% comp.active_effects.each do |ef| %>
                   <% if ef.name == pr %>
                     <div class="component">
@@ -78,30 +145,179 @@
             </div>
             <div class="result">
               <% if i > 0 %>
-                <p>Да. Имеет хорошие ингредиенты для привлечения воды к коже, а затем "запечатать его в", сохраняя кожу увлажненной с течением времени</p>
+              <p>Да. Имеет хорошие ингредиенты для привлечения воды к коже, а затем "запечатать его в", сохраняя кожу увлажненной с течением времени</p>
               <% else %>
-                <p>Нет. Эффективные ингредиенты отсутствуют или их концентрация слишком низкая</p>
+              <p>Нет. Эффективные ингредиенты отсутствуют или их концентрация слишком низкая</p>
               <% end %>
             </div>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div class="list">
+        <h2>Состав</h2>
+        <% @product.structure.each do |point|%>
+          <% c = Component.find(point.component_id) %>
+          <div class="line">
+            <% if point.role == "Active" %>
+              <h3 class = "Active"><%= c.name %></h3>
+            <% elsif point.role == "Form" %>
+              <h3 class = "Form"><%= c.name %></h3>
+            <% else %>
+              <h3 class = "Eritate"><%= c.name %></h3>
+            <% end %>
+            <p><%= c.description %></p>
           </div>
         <% end %>
       </div>
 
+      <div class="graph">
+        <h2>Анализ состава</h2>
+
+        <% all = @product.structure.count %>
+        <% @al = (@al * 100 / all) %>
+        <% @ac = (@ac * 100 / all) %>
+        <% @fo = (@fo * 100 / all) %>
+        <% @er = (@er * 100 / all) %>
+
+
+        <div class="point">
+          <h3>Нераздражающие вещества</h3>
+          <div class="info">
+            <p>Ингредиенты, обеспечивающие обещанный результат и не раздражающие кожу</p>
+            <div class="bar">
+              <% if @ac < 10 %>
+              <div class="w0"></div>
+              <% elsif @ac < 20 %>
+              <div class="w10"></div>
+              <% elsif @ac < 30 %>
+              <div class="w20"></div>
+              <% elsif @ac < 40 %>
+              <div class="w30"></div>
+              <% elsif @ac < 50 %>
+              <div class="w40"></div>
+              <% elsif @ac < 60 %>
+              <div class="w50"></div>
+              <% elsif @ac < 70 %>
+              <div class="w60"></div>
+              <% elsif @ac < 80 %>
+              <div class="w70"></div>
+              <% elsif @ac < 90 %>
+              <div class="w80"></div>
+              <% elsif @ac < 100 %>
+              <div class="w90"></div>
+              <% end %>
+              <h3><%= @ac %>%</h3>
+            </div>
+          </div>
+        </div>
+        <div class="point">
+          <h3>Активные раздражители</h3>
+          <div class="info">
+            <p>Ингредиенты, которые раздражают и не приносят пользы коже</p>
+            <div class="bar">
+              <% if @er < 10 %>
+              <div class="w0"></div>
+              <% elsif @er < 20 %>
+              <div class="w10"></div>
+              <% elsif @er < 30 %>
+              <div class="w20"></div>
+              <% elsif @er < 40 %>
+              <div class="w30"></div>
+              <% elsif @er < 50 %>
+              <div class="w40"></div>
+              <% elsif @er < 60 %>
+              <div class="w50"></div>
+              <% elsif @er < 70 %>
+              <div class="w60"></div>
+              <% elsif @er < 80 %>
+              <div class="w70"></div>
+              <% elsif @er < 90 %>
+              <div class="w80"></div>
+              <% elsif @er < 100 %>
+              <div class="w90"></div>
+              <% end %>
+              <h3><%= @er %>%</h3>
+            </div>
+          </div>
+        </div>
+        <div class="point">
+          <h3>Аллергены</h3>
+          <div class="info">
+            <p>Ингредиенты, которые могут накапливаться в организме и вызывать аллергическую реакцию</p>
+            <div class="bar">
+              <% if @al < 10 %>
+              <div class="w0"></div>
+              <% elsif @al < 20 %>
+              <div class="w10"></div>
+              <% elsif @al < 30 %>
+              <div class="w20"></div>
+              <% elsif @al < 40 %>
+              <div class="w30"></div>
+              <% elsif @al < 50 %>
+              <div class="w40"></div>
+              <% elsif @al < 60 %>
+              <div class="w50"></div>
+              <% elsif @al < 70 %>
+              <div class="w60"></div>
+              <% elsif @al < 80 %>
+              <div class="w70"></div>
+              <% elsif @al < 90 %>
+              <div class="w80"></div>
+              <% elsif @al < 100 %>
+              <div class="w90"></div>
+              <% end %>
+              <h3><%= @al %>%</h3>
+            </div>
+          </div>
+        </div>
+        <div class="point">
+        <h3>Формула поддержки</h3>
+        <div class="info">
+          <p>Ингредиенты, добавляющиеся для текстуры продукта, чтобы помочь доставить другие ингридиенты</p>
+          <div class="bar">
+            <% if @fo < 10 %>
+            <div class="w0"></div>
+            <% elsif @fo < 20 %>
+            <div class="w10"></div>
+            <% elsif @fo < 30 %>
+            <div class="w20"></div>
+            <% elsif @fo < 40 %>
+            <div class="w30"></div>
+            <% elsif @fo < 50 %>
+            <div class="w40"></div>
+            <% elsif @fo < 60 %>
+            <div class="w50"></div>
+            <% elsif @fo < 70 %>
+            <div class="w60"></div>
+            <% elsif @fo < 80 %>
+            <div class="w70"></div>
+            <% elsif @fo < 90 %>
+            <div class="w80"></div>
+            <% elsif @fo < 100 %>
+            <div class="w90"></div>
+            <% end %>
+            <h3><%= @fo %>%</h3>
+          </div>
+        </div>
+      </div>
       </div>
 
-      <h3>Состав</h3>
-      <% structure.each do |component| %>
-      <p><%= component.name %></p>
-      <span><%#= component.to_json %></span>
-        <% final_structure.push(component.name) %>
-        <% component_effects = component.active_effects.all %>
-        <% component_effects.each do |effect| %>
-          <% component_aictive_effects.push(effect.name) %>
-        <% end %>
-        <% component_aictive_effects = component_aictive_effects.uniq %>
-      <% end %>
+      <% @mes = "Редактировать" %>
+      <% @rout = edit_brand_product_path(@product.brand_id, @product.id) %>
+      <%= render "but" %>
     </div>
-</main>
 
-<hr>
-<%= link_to "edit", edit_brand_product_path(@product.brand_id, @product.id) %>
+    <div class="products">
+      <h2>Вам может быть интерено</h2>
+      <div class="cardsCollection">
+        <% Product.all.sample(5).each do |el| %>
+        <% @mod = el %>
+        <%= render "productCard" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
