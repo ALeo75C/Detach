@@ -3,7 +3,7 @@
   display: flex;
   align-items: flex-start;
   .pattern {
-    margin-right: 65px;
+    // margin-right: 65px;
   }
 
   .content {
@@ -16,4 +16,14 @@
 
 .block + .block {
   margin-top: 124px;
+}
+
+@media (max-width: 1023px) {
+
+  .content {
+    width: 91vw;
+  }
+  .block + .block {
+    margin-top: 100px;
+  }
 }

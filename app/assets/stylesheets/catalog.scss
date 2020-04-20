@@ -1,0 +1,30 @@
+.catalog {
+  .cardsCollection {
+    display: flex;
+    flex-wrap: wrap;
+    width: 81vw;
+    max-width: 1380px;
+    overflow-x: hidden;
+
+    .productCard {
+      margin-right: 40px;
+      margin-bottom: 100px;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .catalog {
+    .cardsCollection {
+      width: 91vw;
+    }
+  }
+}
+@media (max-width: 765px) {
+  .catalog .cardsCollection {
+    width: 97vw;
+    .productCard {
+      margin: 0 10px 20px 0;
+    }
+  }
+}

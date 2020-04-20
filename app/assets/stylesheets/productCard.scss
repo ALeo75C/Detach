@@ -10,7 +10,7 @@
       justify-content: center;
       width: 235px;
       height: 305px;
-      background: red;
+      background: #A98B85;
       margin-bottom: 11px;
       overflow: hidden;
 
@@ -63,4 +63,34 @@
     }
   }
 
+}
+
+@media (max-width: 1023px) {
+ .productCard {
+   width: 192px;
+   a {
+     .image {
+       width: 192px;
+       height: 247px;
+     }
+     .info p {
+       width: 100%
+     }
+   }
+ }
+}
+@media (max-width: 767px) {
+  .productCard {
+    width: 144px;
+    height: 300px;
+    a {
+      .image {
+        width: 144px;
+        height: 184px;
+      }
+      .info p {
+        width: 100%
+      }
+    }
+  }
 }

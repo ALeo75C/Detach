@@ -2,21 +2,26 @@
   <div class="brands_fav">
     <h1>Бренды</h1>
 
-    <% if Profile.find(current_user.id).follows.count > 0 %>
+    <% if current_user %>
+      <% if Profile.find(current_user.id).follows.count > 0 %>
       <% Profile.find(current_user.id).follows.all.each do |follow| %>
-        <% brand = Brand.find(follow.brand_id) %>
-        <div class="brand">
-          <%= link_to brand do%>
-          <p><%= brand.name %></p>
-          <% end %>
-          <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
-          <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
-          <% end %>
-        </div>
+      <% brand = Brand.find(follow.brand_id) %>
+      <div class="brand">
+        <%= link_to brand do%>
+        <p><%= brand.name %></p>
+        <% end %>
+        <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
+        <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+        <% end %>
+      </div>
+      <% end %>
+      <% else %>
+      <p>Добавьте любимый бренд в избранное чтобы следить за его новинками</p>
       <% end %>
     <% else %>
       <p>Добавьте любимый бренд в избранное чтобы следить за его новинками</p>
     <% end %>
+
 
 
   </div>
@@ -26,8 +31,14 @@
       <div class="brands_grup">
         <% @brands.each do |brand| %>
           <div class="brand">
-            <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
-              <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+            <% if current_user %>
+              <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
+                <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path do%>
+                <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+              <% end %>
             <% end %>
             <%= link_to brand do%>
               <p><%= brand.name %></p>

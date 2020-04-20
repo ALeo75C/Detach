@@ -1,21 +1,35 @@
 <div class="brandPage">
 
   <div class="cover">
-    <%= image_tag @brand.logo.url unless @brand.logo.url == nil %>
+    <div class="image">
+      <%= image_tag @brand.logo.url unless @brand.logo.url == nil %>
+    </div>
     <div class="info">
       <h1><%= @brand.name %></h1>
       <h3>Описание бренда</h3>
       <p><%= @brand.description %></p>
-      <% @mes = "Подписаться" %>
-      <% @method = :post %>
-      <% @rout = profile_follows_path(profile_id: current_user.profile.id, brand_id: @brand.id) %>
-      <%= render "but" %>
+      <div class="but">
+        <% @mes = "Подписаться" %>
+        <% @method = :post %>
+        <% @rout = profile_follows_path(profile_id: current_user.profile.id, brand_id: @brand.id) %>
+        <%= render "but" %>
 
-      <% @mes = "Редактировать" %>
-      <% @rout = edit_brand_path %>
-      <%= render "but" %>
+        <% @mes = "Редактировать" %>
+        <% @rout = edit_brand_path %>
+        <%= render "but" %>
+      </div>
 
     </div>
+  </div>
+  <div class="but">
+    <% @mes = "Подписаться" %>
+    <% @method = :post %>
+    <% @rout = profile_follows_path(profile_id: current_user.profile.id, brand_id: @brand.id) %>
+    <%= render "but" %>
+
+    <% @mes = "Редактировать" %>
+    <% @rout = edit_brand_path %>
+    <%= render "but" %>
   </div>
 
   <p>

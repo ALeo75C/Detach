@@ -2,7 +2,7 @@ body {
   // width: 84vw;
   overflow-x: hidden;
   margin: 150px auto 0;
-  padding-left: 180px;
+  margin-left: 180px;
   background-color: #E8D8C7;
 
   * {
@@ -69,11 +69,74 @@ body {
     display: grid;
     grid-template-columns: repeat(5  , 1fr);
     grid-gap: 40px;
-    width: 50vw;
+    width: 90vw;
+    overflow-y: hidden;
 
     &.articles {
       grid-template-columns: repeat(4  , 1fr);
     }
 
+  }
+}
+
+@media (max-width: 1439px) {
+  body {
+    margin-left: 100px;
+  }
+}
+@media (max-width: 1023px) {
+  body {
+    margin-left: 70px;
+    h1 {
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 27px;
+    }
+    h3 {
+      font-size: 17px;
+    }
+    h4 {
+      font-size: 17px;
+    }
+    p {
+      font-size: 13px;
+    }
+    a {
+      font-size: 13px;
+    }
+    .cardsCollection {
+      grid-gap: 30px;
+      width: 86vw;
+      overflow-x: scroll;
+      // padding-right: 30px;
+
+      &:last-child {
+        padding-right: 40px;
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  body {
+    margin-top: 120px;
+    margin-left: 30px;
+    h1 {
+      font-size: 32px;
+    }
+    h2 {
+      font-size: 22px;
+    }
+    p {
+      font-size: 14px;
+    }
+    a {
+      font-size: 14px;
+    }
+    .cardsCollection {
+      grid-gap: 15px;
+      width: 90vw;
+      overflow-x: auto;
+    }
   }
 }

@@ -43,6 +43,7 @@
 <% end %>
 
 <div class="productPage">
+  <h1><%= @product.name %></h1>
   <div class="cover">
     <div class="image">
       <%= image_tag @product.image.url unless @product.image.url == nil %>
@@ -72,8 +73,6 @@
           <p>Продукт полностью выполняет заявленные обещания</p>
         </div>
       <% end %>
-      <div class="block">
-      </div>
       <div class="tags">
         <h4>Подходит для типов кожи</h4>
         <div class="tagList">
@@ -109,6 +108,21 @@
     </div>
   </div>
 
+  <div class="buttuns">
+        <% @mes = "Сравнить цены" %>
+        <% @rout = edit_brand_product_path(@product.brand_id, @product.id) %>
+        <%= render "but" %>
+        <% if current_user %>
+          <% @mes = "Добавить в избранное" %>
+          <% @rout = profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id) %>
+          <% @method = :post %>
+          <%= render "but" %>
+        <% else %>
+          <% @mes = "Добавить в избранное" %>
+          <% @rout = new_user_session_path %>
+          <%= render "but" %>
+        <% end %>
+      </div>
   <div class="content">
     <h2>Описание продукта</h2>
     <p><%= @product.description %></p>
@@ -117,6 +131,7 @@
 
     <div class="structure">
       <div class="table">
+        <h2>Свойства</h2>
 
         <div class="t_head">
           <h2>Обещание</h2>
