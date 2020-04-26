@@ -3,13 +3,12 @@
     <%#= image_tag(asset_path(@imagePath)) %>
   </div>
   <div class="content">
-    <h2><%= @h2 %></h2>
+    <h2><%= h2 %></h2>
     <div class="cardsCollection">
-      <% @cla.all.sample(4).each do |el| %>
-      <% @mod = el %>
-      <%= render @cardType %>
+      <% cla.all.sample(4).each do |el| %>
+      <%= render cardType, mod: el %>
       <% end %>
     </div>
-    <%= render "but" %>
+    <%= render "but", mes: mes, rout: rout, method: method %>
   </div>
 </div>

@@ -4,9 +4,7 @@
     <div class="info">
       <h1><%= art.header %></h1>
       <p><%= art.description %></p>
-      <% @mes = "Читать статью" %>
-      <% @rout = article_path(art.id) %>
-      <%= render "but" %>
+      <%= render "but", mes: "Читать статью", rout: article_path(art.id), method: :get %>
     </div>
     <div class="">
       <%= image_tag(asset_path("cover.jpg")) %>
@@ -16,29 +14,10 @@
 </div>
 
 
-<% @h2 = 'Новинки' %>
-<% @cla = Product %>
-<% @cardType = "productCard" %>
-<% @mes = 'Показать все' %>
-<% @rout = products_path %>
-<% @imagePath = "pattern1.png" %>
+<% mes = 'Показать все' %>
 
-<%= render "productBlock" %>
+<%= render "products/productBlock", h2: "Новинки", cla: Product, cardType: "products/productCard", mes: mes, rout: products_path, method: :get %>
 
+<%= render "products/productBlock", h2: "Бренды", cla: Brand, cardType: "brands/brandCard", mes: mes, rout: brands_path, method: :get %>
 
-<% @h2 = 'Бренды' %>
-<% @cla = Brand %>
-<% @cardType = "brandCard" %>
-<% @rout = brands_path %>
-<% @imagePath = "pattern2.png" %>
-
-<%= render "productBlock" %>
-
-
-<% @h2 = 'Статьи' %>
-<% @cla = Article %>
-<% @cardType = "articleCard" %>
-<% @rout = articles_path %>
-<% @imagePath = "pattern1.png" %>
-
-<%= render "articleBlock" %>
+<%= render "articles/articleBlock", h2: "Статьи", cla: Article, cardType: "articles/articleCard", mes: mes, rout: articles_path, method: :get %>

@@ -1,12 +1,11 @@
 <div class="favorite">
   <h1>Избранное</h1>
   <div class="favoriteCollection">
-    <% profile = Profile.find(current_user.id) %>
+    <% profile = @profiles.find(current_user.id) %>
     <% if profile.follows.count > 0 %>
       <% profile.follows.each do |follow|%>
         <div class="favCard">
-          <% @mod = Brand.find(follow.brand_id) %>
-          <%= render "brandCard" %>
+          <%= render "brands/brandCard", mod: @brands.find(follow.brand_id) %>
           <%= link_to profile_follow_url(id: follow.id), method: :delete  do%>
             <span>Delete</span>
           <% end %>
@@ -20,9 +19,8 @@
   <div class="favoriteCollection">
   <% @favorites.each do |favorite| %>
     <div class="favCard">
-      <% product = Product.find(favorite.product_id) %>
-      <% @mod = product %>
-      <%= render "productCard" %>
+      <% product = @products.find(favorite.product_id) %>
+      <%= render "products/productCard", mod: product %>
       <%= link_to profile_favorite_url(id: favorite.id), method: :delete  do%>
       <div class="delete">
         <span>Delete</span>

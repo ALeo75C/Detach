@@ -1,7 +1,7 @@
 .landing {
   z-index: -2;
   position: relative;
-  width: 100vw;
+  width: 108vw;
   margin-left: -180px;
   margin-top: -150px;
   margin-bottom: -120px;
@@ -25,10 +25,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      margin-bottom: 320px;
+
+      img {
+        position: absolute;
+        width: 620px;
+      }
 
       .content {
         width: 565px;
-        margin: 0 8vw;
+        margin: 0 180px;
         color: #E8D8C7;
         // &:not(:first-of-type) {
         //   margin-top: 300px;
@@ -50,16 +57,17 @@
       &:nth-of-type(2) {
         flex-direction: row-reverse;
         margin-top: 320px;
+
         img {
-          width: 40vw;
+          left: -60px;
         }
       }
 
       &:nth-of-type(3) {
-        margin: 170px 120px;
+        margin: 170px 120px 320px;
 
         .column {
-          width: 360px;
+          width: 28vw;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -70,6 +78,10 @@
             height: 180px;
             display: flex;
             align-items: flex-end;
+            img {
+              position: sticky;
+              width: 9vw;
+            }
           }
 
 
@@ -80,26 +92,30 @@
           }
           p {
             color: #D6B89A;
-            width: 360px;
+            width: 28vw;
           }
         }
       }
 
       &:nth-of-type(4) {
         flex-direction: row;
-        margin-bottom: 40px;
+        margin-bottom: 400px;
 
         img {
-          margin-right: -50px;
+          right: -50px;
         }
       }
 
       &:nth-of-type(5) {
         flex-direction: row-reverse;
-        margin-bottom: 90px;
+        margin: 0 84px 400px 0;
+        .content {
+          margin: 0 80px 0 0;
+        }
 
         img {
-          margin-right: 8vw;
+          left: -120px;
+          top: -310px;
         }
       }
 
@@ -107,7 +123,9 @@
         flex-direction: row;
 
         img {
-          margin-right: 16vw;
+          right: 0;
+          width: 440px;
+          top: -250px;
         }
       }
     }
@@ -137,6 +155,232 @@
       color: #0A0202;
       text-align: center;
       width: 480px;
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .landing {
+    .info {
+      margin-top: 30px 0;
+
+      .skreen {
+        &:nth-of-type(2) {
+          margin-top: -80px;
+
+          .content {
+            margin: 0;
+          }
+        }
+        &:nth-of-type(3) {
+          margin: -120px 20px 210px 120px;
+        }
+        &:nth-of-type(4) {
+          img {
+            right: -250px;
+          }
+        }
+        &:nth-of-type(5) {
+          margin-bottom: 340px;
+          .content {
+            margin: 0 -70px 0 0;
+          }
+        }
+        &:nth-of-type(6) {
+          margin-bottom: 0;
+          img {
+            width: 330px;
+            top: -180px;
+            right: -20px;
+          }
+        }
+      }
+    }
+  }
+
+}
+@media (max-width: 1023px) {
+  .landing {
+    margin-left: -70px;
+    .info {
+      padding-top: 110px;
+      img:first-of-type {
+        width: 120vw;
+      }
+      .skreen {
+        margin: 120px 0 200px -110px;
+
+        .content {
+          width: 60vw;
+
+          p {
+            width: 50vw;
+          }
+        }
+
+        &:nth-of-type(2) {
+          margin-top: 20px;
+          .content {
+            margin-left: -10px;
+          }
+          img {
+            width: 70vw;
+          }
+        }
+        &:nth-of-type(3) {
+          margin: -70px 90px 0 30px;
+        }
+        &:nth-of-type(4) {
+          margin: 60px 0 210px -90px;
+          width: 100vw;
+          img {
+            width: 60vw;
+            right: -270px;
+          }
+        }
+        &:nth-of-type(5) {
+          margin-bottom: 180px;
+          .content {
+            margin-right: -30px;
+          }
+          img {
+            width: 50vw;
+            top: -140px;
+          }
+        }
+        &:nth-of-type(6) {
+          .content {
+            margin-bottom: 100px;
+          }
+          img {
+            width: 40vw;
+            top: 30px;
+          }
+        }
+      }
+    }
+    .fot {
+      .content {
+        margin-top: 70px;
+        img {
+          margin-bottom: 50px;
+        }
+      }
+      img {
+        top: -10%;
+        z-index: -1;
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .landing {
+    margin-left: -40px;
+    .info {
+      margin-left: 10px;
+      width: 101vw;
+      img:first-of-type {
+        width: 310vw;
+        top: 9vw;
+        right: -200px;
+      }
+
+      .skreen {
+        margin-left: 40px;
+        width: 312px;
+
+        &:first-of-type {
+          margin-top: 150px;
+          margin-left: 40px;
+
+          .content {
+            width: 100vw;
+            margin: 0;
+            p {
+              width: 80vw;
+            }
+          }
+        }
+        &:nth-of-type(2) {
+          margin: 0 0 80px -40px;
+          .content {
+            margin-left: 0;
+            h1, p {
+              width: 312px;
+            }
+          }
+          img {
+            width: 110vw;
+            left: -250px;
+            top: -400px;
+          }
+        }
+        &:nth-of-type(3) {
+          flex-direction: column;
+          margin: 0 0 0 40px;
+          .column {
+            width: 312px;
+            height: auto;
+            margin-bottom: 70px;
+            .img {
+              height: auto;
+              img {
+                width: 30vw;
+              }
+            }
+            h3, p {
+              width: 312px;
+            }
+          }
+        }
+        &:nth-of-type(4) {
+          margin-bottom: 90px;
+          .content {
+            margin: 60px 0 0 130px;
+            width: 312px;
+            h1, p {
+              width: 312px;
+            }
+          }
+          img {
+            display: none;
+          }
+        }
+        &:nth-of-type(5) {
+          margin: 0 0 0 13px;
+          width: 312px;
+          .content {
+            width: 312px;
+            h1, p {
+              width: 312px;
+            }
+          }
+          img {
+            display: none;
+          }
+        }
+        &:nth-of-type(6) {
+          .content {
+            margin: 0;
+            width: 312px;
+            h1, p {
+              width: 312px;
+            }
+          }
+          img {
+            display: none;
+          }
+        }
+      }
+
+    }
+    .fot {
+      .content {
+        width: 100vw;
+        h1 {
+          width: 312px;
+        }
+      }
     }
   }
 }

@@ -2,16 +2,16 @@
   <%= image_tag asset_path("icons/burger.png"), class: "burger" %>
   <div class="left">
     <div class="logo">
-      <%= link_to image_tag(asset_path("logos/LogoFull.png")), root_path %></li>
+      <%= link_to image_tag(asset_path("logos/LogoFull.png")), detach_landing_path %>
     </div>
     <ul>
       <li>
-        <% if controller.class == DetachController && controller.action_name != "index" %>
-          <%= link_to "О нас", detach_landing_path, class: "active" %>
+        <% if controller.class == DetachController && controller.action_name == "index" %>
+          <%= link_to "Главная", root_path, class: "active" %>
           <div></div>
         <% else %>
-          <%= link_to "О нас", detach_landing_path %>
-          <% end %>
+          <%= link_to "Главная", root_path %>
+        <% end %>
         <div></div>
       </li>
       <li>

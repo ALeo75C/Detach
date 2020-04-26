@@ -37,10 +37,10 @@
         <p><%= @profile.age %></p>
       </div>
       <div class="point">
-        <p><%= @profile.skin_type.name%></p>
+        <p><%= @profile.skin_type.name unless @profile.skin_type == nil %></p>
       </div>
 
       <h3>Дополнительная информация</h3>
-      
+
     </div>
 </div>

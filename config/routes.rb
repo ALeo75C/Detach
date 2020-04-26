@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   # resources :components
   # resources :active_effects
-  resources :products
+  resources :products do
+    resources :comments
+  end
 
   # root"detach#landing"
   # get 'detach/landing'

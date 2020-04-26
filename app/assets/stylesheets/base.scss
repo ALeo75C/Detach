@@ -110,6 +110,14 @@ body {
       width: 86vw;
       overflow-x: scroll;
       // padding-right: 30px;
+      &.articles {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90vw;
+        a {
+          width: 315px;
+        }
+      }
 
       &:last-child {
         padding-right: 40px;
@@ -137,6 +145,14 @@ body {
       grid-gap: 15px;
       width: 90vw;
       overflow-x: auto;
+
+      &.articles {
+        display: flex;
+        flex-direction: column;
+        .articleCard a {
+          width: 85vw;
+        }
+      }
     }
   }
 }

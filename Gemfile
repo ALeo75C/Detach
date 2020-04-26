@@ -59,3 +59,5 @@ gem 'carrierwave', '~> 2.0'
 gem 'devise'
 
 gem 'bcrypt'
+
+gem 'cancancan'

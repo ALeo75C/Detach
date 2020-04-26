@@ -1,16 +1,16 @@
 <div class="acticleCard">
-  <%= link_to (article_path(@mod)) do %>
+  <%= link_to (article_path(mod)) do %>
     <div class="info">
       <p>Статья</p>
-      <h3><%= @mod.header %></h3>
+      <h3><%= mod.header %></h3>
       <p>Читать статью</p>
     </div>
     <div class="image">
       <div class="shadow">
 
       </div>
-      <% if @mod.cover.url %>
-        <%= image_tag @mod.cover.url%>
+      <% if mod.cover.url %>
+        <%= image_tag mod.cover.url%>
       <% else %>
         <%= image_tag asset_path("asep1.jpg")%>
       <% end %>

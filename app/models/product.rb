@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :brand
 
+  has_many :comments
+  has_many :profiles, through: :comments
+
   has_many :structure
   has_many :components, through: :structure
 

@@ -1,8 +1,8 @@
 <div class="productCard">
-  <%= link_to (brand_product_path(@mod.brand_id, @mod.id)) do %>
+  <%= link_to (brand_product_path(mod.brand_id, mod.id)) do %>
     <div class="image">
-      <% if @mod.image.url %>
-        <%= image_tag @mod.image.url %>
+      <% if mod.image.url %>
+        <%= image_tag mod.image.url %>
       <% else %>
         <%= image_tag(asset_path("apsent.jpg")) %>
       <% end %>
@@ -19,8 +19,8 @@
       <%= image_tag(asset_path("icons/effect/god.png")) %>
     </div>
     <div class="info">
-      <h3><%= @mod.name %></h3>
-      <p><%= @mod.view unless @mod.view == nil %></p>
+      <h3><%= mod.name %></h3>
+      <p><%= mod.view unless mod.view == nil %></p>
     </div>
   <% end %>
 </div>

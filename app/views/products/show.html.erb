@@ -1,47 +1,3 @@
-<% @al = 0 %>
-<% @ac = 0 %>
-<% @fo = 0 %>
-<% @er = 0 %>
-<% @product.structure.each do |point| %>
-  <% component = Component.find(point.component_id) %>
-  <% if component.allergen %>
-    <% @al = @al + 1 %>
-  <% end %>
-  <% ar = Array.new %>
-  <% component.active_effects.each do |l| %>
-    <% ar.push(l.name) %>
-  <% end %>
-  <%i = ar.count %>
-  <% ar.each do |a| %>
-    <% @product.active_effects.each do |effect| %>
-      <% if effect.name == a %>
-        <% point.role = "Active" %>
-        <% @ac = @ac + 1 %>
-        <% ar.delete(a) %>
-      <% end %>
-    <% end %>
-  <% end %>
-
-  <% if ar.count == i %>
-  <% i = ar.count %>
-    <% ar.each do |a| %>
-      <% @product.active_effects.each do |effect| %>
-        <% if a == "Формула поддержки" %>
-          <% point.role = "Form" %>
-          <% @fo = @fo + 1 %>
-          <% ar.delete(a) %>
-          <% ar %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-
-  <% if ar.count == i %>
-      <% point.role = "Eritate" %>
-      <% @er = @er + 1 %>
-  <% end %>
-<% end %>
-
 <div class="productPage">
   <h1><%= @product.name %></h1>
   <div class="cover">
@@ -91,44 +47,33 @@
         <p>Эко-упаковка</p>
       </div>
       <div class="buttuns">
-        <% @mes = "Сравнить цены" %>
-        <% @rout = edit_brand_product_path(@product.brand_id, @product.id) %>
-        <%= render "but" %>
+        <% if can? :edit, @post %>
+        <%= render "but", mes: "Редактировать", rout: edit_brand_product_path(@product.brand_id, @product.id), method: :get %>
+        <% end %>
+        <%= render "but", mes: "Сравнить цены", rout: edit_brand_product_path(@product.brand_id, @product.id), method: :get %>
         <% if current_user %>
-          <% @mes = "Добавить в избранное" %>
-          <% @rout = profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id) %>
-          <% @method = :post %>
-          <%= render "but" %>
+          <%= render "but", mes: "Добавить в избранное", rout: profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id), method: :post %>
         <% else %>
-          <% @mes = "Добавить в избранное" %>
-          <% @rout = new_user_session_path %>
-          <%= render "but" %>
+          <%= render "but", mes: "Добавить в избранное", rout: new_user_session_path, method: :get %>
         <% end %>
       </div>
     </div>
   </div>
 
   <div class="buttuns">
-        <% @mes = "Сравнить цены" %>
-        <% @rout = edit_brand_product_path(@product.brand_id, @product.id) %>
-        <%= render "but" %>
+        <% if can? :edit, @post %>
+          <%= render "but", mes: "Редактировать", rout: edit_brand_product_path(@product.brand_id, @product.id), method: :get %>
+        <% end %>
+          <%= render "but", mes: "Сравнить цены", rout: edit_brand_product_path(@product.brand_id, @product.id), method: :get %>
         <% if current_user %>
-          <% @mes = "Добавить в избранное" %>
-          <% @rout = profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id) %>
-          <% @method = :post %>
-          <%= render "but" %>
+          <%= render "but", mes: "Добавить в избранное", rout: profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id), method: :post %>
         <% else %>
-          <% @mes = "Добавить в избранное" %>
-          <% @rout = new_user_session_path %>
-          <%= render "but" %>
+          <%= render "but", mes: "Добавить в избранное", rout: new_user_session_path, method: :get %>
         <% end %>
       </div>
   <div class="content">
     <h2>Описание продукта</h2>
     <p><%= @product.description %></p>
-
-    <!-- Вывести бесполезные элемнты -->
-
     <div class="structure">
       <div class="table">
         <h2>Свойства</h2>
@@ -160,7 +105,7 @@
             </div>
             <div class="result">
               <% if i > 0 %>
-              <p>Да. Имеет хорошие ингредиенты для привлечения воды к коже, а затем "запечатать его в", сохраняя кожу увлажненной с течением времени</p>
+              <p>Да. Имеет хорошие ингредиенты которые отвечают заявленному обущанию</p>
               <% else %>
               <p>Нет. Эффективные ингредиенты отсутствуют или их концентрация слишком низкая</p>
               <% end %>
@@ -197,140 +142,97 @@
         <% @fo = (@fo * 100 / all) %>
         <% @er = (@er * 100 / all) %>
 
-
-        <div class="point">
-          <h3>Нераздражающие вещества</h3>
-          <div class="info">
-            <p>Ингредиенты, обеспечивающие обещанный результат и не раздражающие кожу</p>
-            <div class="bar">
-              <% if @ac < 10 %>
-              <div class="w0"></div>
-              <% elsif @ac < 20 %>
-              <div class="w10"></div>
-              <% elsif @ac < 30 %>
-              <div class="w20"></div>
-              <% elsif @ac < 40 %>
-              <div class="w30"></div>
-              <% elsif @ac < 50 %>
-              <div class="w40"></div>
-              <% elsif @ac < 60 %>
-              <div class="w50"></div>
-              <% elsif @ac < 70 %>
-              <div class="w60"></div>
-              <% elsif @ac < 80 %>
-              <div class="w70"></div>
-              <% elsif @ac < 90 %>
-              <div class="w80"></div>
-              <% elsif @ac < 101 %>
-              <div class="w90"></div>
-              <% end %>
-              <h3><%= @ac %>%</h3>
-            </div>
-          </div>
-        </div>
-        <div class="point">
-          <h3>Активные раздражители</h3>
-          <div class="info">
-            <p>Ингредиенты, которые раздражают и не приносят пользы коже</p>
-            <div class="bar">
-              <% if @er < 10 %>
-              <div class="w0"></div>
-              <% elsif @er < 20 %>
-              <div class="w10"></div>
-              <% elsif @er < 30 %>
-              <div class="w20"></div>
-              <% elsif @er < 40 %>
-              <div class="w30"></div>
-              <% elsif @er < 50 %>
-              <div class="w40"></div>
-              <% elsif @er < 60 %>
-              <div class="w50"></div>
-              <% elsif @er < 70 %>
-              <div class="w60"></div>
-              <% elsif @er < 80 %>
-              <div class="w70"></div>
-              <% elsif @er < 90 %>
-              <div class="w80"></div>
-              <% elsif @er < 101 %>
-              <div class="w90"></div>
-              <% end %>
-              <h3><%= @er %>%</h3>
-            </div>
-          </div>
-        </div>
-        <div class="point">
-          <h3>Аллергены</h3>
-          <div class="info">
-            <p>Ингредиенты, которые могут накапливаться в организме и вызывать аллергическую реакцию</p>
-            <div class="bar">
-              <% if @al < 10 %>
-              <div class="w0"></div>
-              <% elsif @al < 20 %>
-              <div class="w10"></div>
-              <% elsif @al < 30 %>
-              <div class="w20"></div>
-              <% elsif @al < 40 %>
-              <div class="w30"></div>
-              <% elsif @al < 50 %>
-              <div class="w40"></div>
-              <% elsif @al < 60 %>
-              <div class="w50"></div>
-              <% elsif @al < 70 %>
-              <div class="w60"></div>
-              <% elsif @al < 80 %>
-              <div class="w70"></div>
-              <% elsif @al < 90 %>
-              <div class="w80"></div>
-              <% elsif @al < 101 %>
-              <div class="w90"></div>
-              <% end %>
-              <h3><%= @al %>%</h3>
-            </div>
-          </div>
-        </div>
-        <div class="point">
-        <h3>Формула поддержки</h3>
-        <div class="info">
-          <p>Ингредиенты, добавляющиеся для текстуры продукта, чтобы помочь доставить другие ингридиенты</p>
-          <div class="bar">
-            <% if @fo < 10 %>
-            <div class="w0"></div>
-            <% elsif @fo < 20 %>
-            <div class="w10"></div>
-            <% elsif @fo < 30 %>
-            <div class="w20"></div>
-            <% elsif @fo < 40 %>
-            <div class="w30"></div>
-            <% elsif @fo < 50 %>
-            <div class="w40"></div>
-            <% elsif @fo < 60 %>
-            <div class="w50"></div>
-            <% elsif @fo < 70 %>
-            <div class="w60"></div>
-            <% elsif @fo < 80 %>
-            <div class="w70"></div>
-            <% elsif @fo < 90 %>
-            <div class="w80"></div>
-            <% elsif @fo < 101 %>
-            <div class="w90"></div>
+        <% i = 0 %>
+        <% 4.times do %>
+          <div class="point">
+            <% if i == 0 %>
+              <% value = @ac %>
+              <h3>Нераздражающие вещества</h3>
+              <div class="info">
+                <p>Ингредиенты, обеспечивающие обещанный результат и не раздражающие кожу</p>
+            <% elsif i == 1 %>
+              <% value = @er %>
+              <h3>Активные раздражители</h3>
+              <div class="info">
+                <p>Ингредиенты, которые раздражают и не приносят пользы коже</p>
+            <% elsif i == 2 %>
+              <% value = @al %>
+              <h3>Аллергены</h3>
+              <div class="info">
+                <p>Ингредиенты, которые могут накапливаться в организме и вызывать аллергическую реакцию</p>
+            <% else %>
+              <% value = @fo %>
+              <h3>Формула поддержки</h3>
+              <div class="info">
+                <p>Ингредиенты, добавляющиеся для текстуры продукта, чтобы помочь доставить другие ингридиенты</p>
             <% end %>
-            <h3><%= @fo %>%</h3>
+            <% if value > 100 %>
+              <% value = 100 %>
+            <% end %>
+            <div class="bar">
+              <% if value == 0 %>
+                <div class="w-0"></div>
+              <% elsif value < 10 %>
+                <div class="w0"></div>
+              <% elsif value < 20 %>
+                <div class="w10"></div>
+              <% elsif value < 30 %>
+                <div class="w20"></div>
+              <% elsif value < 40 %>
+                <div class="w30"></div>
+              <% elsif value < 50 %>
+                <div class="w40"></div>
+              <% elsif value < 60 %>
+                <div class="w50"></div>
+              <% elsif value < 70 %>
+                <div class="w60"></div>
+              <% elsif value < 80 %>
+                <div class="w70"></div>
+              <% elsif value < 90 %>
+                <div class="w80"></div>
+              <% elsif value < 100 %>
+                <div class="w90"></div>
+              <% elsif value >= 100 %>
+                <div class="w100"></div>
+              <% end %>
+              <% if i == 0 %>
+                <h3><%= value %>%</h3>
+              <% elsif i == 1 %>
+                <h3><%= value %>%</h3>
+              <% elsif i == 2 %>
+                <h3><%= value %>%</h3>
+              <% else %>
+                <h3><%= value %>%</h3>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
+          <% i = i + 1 %>
+        <% end %>
       </div>
 
-      <% @mes = "Редактировать" %>
-      <% @rout = edit_brand_product_path(@product.brand_id, @product.id) %>
-      <%= render "but" %>
+      <div class="comments">
+        <h2>Отзывы</h2>
+        <% if @product.comments.count != 0 %>
+          <% @product.comments.each do |com| %>
+          <p>
+            <%= com.content %>
+          </p>
+          <% end %>
+        <% else %>
+          <h3>Отзывов пока нет</h3>
+        <% end %>
+        <% if current_user %>
+          <%= render "but", mes: "Добвить отзыв", rout: new_product_comment_path(@product), method: :get %>
+        <% end %>
+      </div>
     </div>
 
     <div class="products">
       <h2>Вам может быть интерено</h2>
       <div class="cardsCollection">
         <% Product.all.sample(5).each do |el| %>
-        <% @mod = el %>
-        <%= render "productCard" %>
+          <%= render "productCard", mod: el %>
         <% end %>
       </div>
     </div>

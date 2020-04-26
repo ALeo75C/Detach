@@ -54,7 +54,6 @@
 
 
 <br>
-
-<% @mes = "Новый бренд" %>
-<% @rout = new_brand_path %>
-<%= render "but" %>
+<% if can? :edit, @post %>
+  <%= render "but", mes: "Новый бренд", rout: new_brand_path, method: :get%>
+<% end %>

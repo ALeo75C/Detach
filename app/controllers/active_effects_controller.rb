@@ -1,4 +1,5 @@
 class ActiveEffectsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_active_effect, only: [:show, :edit, :update, :destroy]
 
   # GET /active_effects

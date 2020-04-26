@@ -1,11 +1,11 @@
 <div class="but">
-  <% if @method %>
-    <%= link_to @rout, method: @method do %>
-    <span><%= @mes %></span>
+  <% if method == :post %>
+    <%= link_to rout, method: method do %>
+    <span><%= mes %></span>
     <% end %>
   <% else %>
-    <%= link_to @rout do %>
-    <span><%= @mes %></span>
+    <%= link_to rout do %>
+    <span><%= mes %></span>
     <% end %>
   <% end %>
 </div>

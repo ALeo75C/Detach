@@ -1,10 +1,14 @@
 class FavoritesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
 
   # GET /favorites
   # GET /favorites.json
   def index
     @favorites = Favorite.all
+    @profiles = Profile.all
+    @brands = Brand.all
+    @products = Product.all
   end
 
   # GET /favorites/1

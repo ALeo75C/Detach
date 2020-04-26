@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
+  load_and_authorize_resource
+  
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+
 
   # GET /products
   # GET /products.json
@@ -7,17 +10,63 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  # GET /products/1
-  # GET /products/1.json
-  def show
-  end
-
   # GET /products/new
   def new
     @product = Product.new
   end
 
+  # GET /products/1
+  # GET /products/1.json
+  def show
+    @al = 0
+    @ac = 0
+    @fo = 0
+    @er = 0
+    @product.structure.each do |point|
+      component = Component.find(point.component_id)
+      if component.allergen
+        @al = @al + 1
+      end
+      ar = Array.new
+      component.active_effects.each do |l|
+        ar.push(l.name)
+      end
+      i = ar.count
+      ar.each do |a|
+        @product.active_effects.each do |effect|
+          if effect.name == a
+            point.role = "Active"
+            @ac = @ac + 1
+            ar.delete(a)
+          end
+        end
+      end
+
+      if ar.count == i
+      i = ar.count
+        ar.each do |a|
+          @product.active_effects.each do |effect|
+            if a == "Формула поддержки"
+              point.role = "Form"
+              @fo = @fo + 1
+              ar.delete(a)
+              ar
+            end
+          end
+        end
+      end
+
+      if ar.count == i
+          point.role = "Eritate"
+          @er = @er + 1
+      end
+    end
+
+
+
+  end
   # GET /products/1/edit
+
   def edit
   end
 

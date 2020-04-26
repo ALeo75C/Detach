@@ -3,13 +3,11 @@
 <h1>Статьи</h1>
 
 <div class="cardsCollection articles">
-  <% Article.all.each do |art| %>
-    <% @mod = art %>
-    <%= render "articleCard" %>
+  <% @articles.each do |art| %>
+    <%= render "articleCard", mod: art %>
   <% end %>
 </div>
 
-
-<% @mes = "Новая статья" %>
-<% @rout = new_article_path %>
-<%= render "but" %>
+<% if can? :edit, @post %>
+  <%= render "but", mes: "Новая статья", rout: new_article_path, method: :get %>
+<% end %>

@@ -28,12 +28,10 @@
     </p>
 
     <div class="butCollection">
-      <% @mes = "Изменить статью" %>
-      <% @path = edit_article_path(@article) %>
-      <%= render "but" %>
-      <% @mes = "Назад" %>
-      <% @path = articles_path %>
-      <%= render "but" %>
+      <% if can? :edit, @post %>
+        <%= render "but", mes: "Изменить статью", rout: edit_article_path(@article), method: :get %>
+      <% end %>
+      <%= render "but", mes: "Назад", rout: articles_path, method: :get %>
 
     </div>
 

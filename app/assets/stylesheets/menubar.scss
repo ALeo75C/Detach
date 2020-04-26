@@ -18,6 +18,9 @@
 
   .burger {
     display: none;
+    &.active {
+      display: block;
+    }
   }
 
   .left {

@@ -3,6 +3,13 @@
     margin-bottom: 120px;
     display: flex;
 
+    .but {
+      display: flex;
+      .but + .but {
+        margin-left: 60px;
+      }
+    }
+
     .image {
       width: 360px;
       height: 418px;

@@ -71,11 +71,18 @@ users = [
     skin: "Чувствительня кожа",
     age: 48,
     avatar: "2.png"
-    }
+    }, {
+      email: "admin@test.ru",
+      password: BCrypt::Password.create("123456"),
+      user_name: "ADMIN",
+      }
   ]
 
 users.each do |user|
-    u = User.create!(email: user[:email], password: user[:password], encrypted_password: user[:password])
+  if user[:user_name] == "ADMIN"
+    u = User.create!(email: user[:email], password: user[:password], encrypted_password: user[:password], admin: true)
+  else
+    u = User.create!(email: user[:email], password: user[:password], encrypted_password: user[:password], admin: false)
     pr = Profile.last
     pr.name = user[:user_name]
     pr.age = user[:age]
@@ -83,6 +90,7 @@ users.each do |user|
     pr.skin_type_id = skin.id
     pr.avatar = avatar(user[:avatar])
     pr.save
+  end
     #
     # puts "#{pr.name}, #{pr.age}, #{SkinType.find_by( name: pr.skin_type_id).name}"
   end
