@@ -1,12 +1,8 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
-  def index
-    @comments = Comment.all
-  end
 
   # GET /comments/1
   # GET /comments/1.json
@@ -25,11 +21,13 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    puts "+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+"
+    puts params[:comment]
     @comment = Comment.new(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to brands_path }
+        format.html { redirect_to brand_product_path(Brand.find(Product.find(@comment.product_id).brand_id).id, @comment.product_id), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -43,7 +41,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to brand_product_path(Brand.find(Product.find(params[:product_id]).brand_id).id, params[:product_id]), notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -57,7 +55,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to brand_product_path(Brand.find(Product.find(params[:product_id]).brand_id).id, params[:product_id]), notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

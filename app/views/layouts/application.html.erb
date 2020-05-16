@@ -13,6 +13,14 @@
 
   <body>
     <%= render 'menubar' %>
+    <script type="text/javascript">
+      but = document.querySelector('.burger')
+      menu = document.querySelector('.forMobile')
+      but.onclick = function() {
+        but.classList.toggle('active')
+        menu.classList.toggle('active')
+      }
+    </script>
     <%= yield %>
     <%= render 'footer' %>
   </body>

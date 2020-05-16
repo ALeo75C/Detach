@@ -1,2 +1,3 @@
 class SkinFactor < ApplicationRecord
+
 end

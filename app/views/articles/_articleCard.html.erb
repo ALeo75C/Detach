@@ -12,7 +12,14 @@
       <% if mod.cover.url %>
         <%= image_tag mod.cover.url%>
       <% else %>
-        <%= image_tag asset_path("asep1.jpg")%>
+        <% i = rand(3) %>
+        <% if i == 0 %>
+          <%= image_tag asset_path("covers/a_1.jpg")%>
+        <% elsif i == 1 %>
+          <%= image_tag asset_path("covers/a_2.jpg")%>
+        <% elsif i == 2 %>
+          <%= image_tag asset_path("covers/a_3.jpg")%>
+        <% end %>
       <% end %>
     </div>
   <% end %>

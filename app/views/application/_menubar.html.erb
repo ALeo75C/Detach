@@ -1,50 +1,50 @@
 <div class="menubar">
-  <%= image_tag asset_path("icons/burger.png"), class: "burger" %>
-  <div class="left">
-    <div class="logo">
-      <%= link_to image_tag(asset_path("logos/LogoFull.png")), detach_landing_path %>
-    </div>
-    <ul>
-      <li>
-        <% if controller.class == DetachController && controller.action_name == "index" %>
+  <div class="up">
+    <%= image_tag asset_path("icons/burger.png"), class: "burger" %>
+    <div class="left">
+      <div class="logo">
+        <%= link_to image_tag(asset_path("logos/LogoFull.png")), detach_landing_path %>
+      </div>
+      <ul>
+        <li>
+          <% if controller.class == DetachController && controller.action_name == "index" %>
           <%= link_to "Главная", root_path, class: "active" %>
           <div></div>
-        <% else %>
+          <% else %>
           <%= link_to "Главная", root_path %>
-        <% end %>
-        <div></div>
-      </li>
-      <li>
-        <% if controller.class == ProductsController %>
-          <%= link_to "Каталог", products_path, class: "active" %>
-          <div></div>
-        <% else %>
-          <%= link_to "Каталог", products_path %>
           <% end %>
-        <div></div>
-      </li>
-      <li>
-        <% if controller.class == BrandsController %>
+          <div></div>
+        </li>
+        <li>
+          <% if controller.class == ProductsController %>
+          <%= link_to "Каталог", catalogs_path, class: "active" %>
+          <div></div>
+          <% else %>
+          <%= link_to "Каталог", catalogs_path %>
+          <% end %>
+          <div></div>
+        </li>
+        <li>
+          <% if controller.class == BrandsController %>
           <%= link_to "Бренды", brands_path, class: "active" %>
           <div></div>
-        <% else %>
+          <% else %>
           <%= link_to "Бренды", brands_path %>
           <% end %>
-        <div></div>
-      </li>
-      <li>
-        <% if controller.class == ArticlesController %>
+          <div></div>
+        </li>
+        <li>
+          <% if controller.class == ArticlesController %>
           <%= link_to "Статьи", articles_path, class: "active" %>
           <div></div>
-        <% else %>
+          <% else %>
           <%= link_to "Статьи", articles_path %>
           <% end %>
-        <div></div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="rigth">
+          <div></div>
+        </li>
+      </ul>
+    </div>
+    <div class="rigth">
       <% if user_signed_in? %>
         <div class="cearth">
             <%= image_tag(asset_path("icons/loup/inactive.png")) %>
@@ -78,6 +78,47 @@
           <%= link_to('Sign Up', new_user_registration_path) %>
         </div>
       <% end %>
+    </div>
+  </div>
+  <div class="forMobile">
+    <ul>
+      <li> <%= link_to "Главная", root_path %> </li>
+      <li> <%= link_to "Каталог", catalogs_path %> </li>
+      <li> <%= link_to "Бренды", brands_path %> </li>
+      <li> <%= link_to "Статьи", articles_path %> </li>
+      <% if user_signed_in? %>
+        <li class="black"><%= link_to "Избранное", (profile_favorites_path(current_user.profile.id))%></li>
+        <li class="black"><%= link_to "Профиль", (profile_path(current_user.id)) %></li>
+        <li class="black"><%= link_to "Выход", (profile_path(current_user.id)) %></li>
+      <% else %>
+        <li class="black"><%= link_to('Регистрация', new_user_registration_path) %></li>
+        <li class="black"><%= link_to('Вход', new_user_session_path) %></li>
+      <% end %>
+    </ul>
   </div>
 
+  <% if controller.class == ProductsController && controller.action_name == "catalog" %>
+    <div class="crumb_bar">
+      <!--
+      Начиная с первой группы
+      на странице продуктов
+      на странице бренда -->
+      <p><%= link_to "Каталог", catalogs_path %></p>
+      <div class="sir"></div>
+      <p><%= link_to ProductGroup.find(params[:id]).name, catalog_path(params[:id]) %></p>
+    </div>
+  <% end %>
+  <% if controller.class == ProductsController && controller.action_name == "show" %>
+    <div class="crumb_bar">
+      <!--
+      Начиная с первой группы
+      на странице продуктов
+      на странице бренда -->
+      <p><%= link_to "Каталог", catalogs_path, class: "active" %></p>
+      <div class="sir"></div>
+      <%= link_to ProductGroup.find(@product.product_types.first.product_group_id).name, catalog_path(ProductGroup.find(@product.product_types.first.product_group_id).id) %>
+      <div class="sir"></div>
+      <p><%= @product.product_types.first.name %></p>
+    </div>
+  <% end %>
 </div>

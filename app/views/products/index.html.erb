@@ -1,9 +1,15 @@
-<div class="catalog">
+<div class="catalog collection">
   <h1>Каталог</h1>
-  <div class="cardsCollection">
-    <% @products.each do |product|%>
-      <%= render "productCard", mod: product %>
-    <% end %>
+  <div class="groupCollection">
+    <% ProductGroup.all.each do |group| %>
+      <%= link_to catalog_path(group) do%>
+        <div class="block">
+          <div class="image">
 
+          </div>
+          <p><%= group.name %></p>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>

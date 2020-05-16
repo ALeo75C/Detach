@@ -1,4 +1,4 @@
 class Comment < ApplicationRecord
-  belongs_to :profile
-  belongs_to :product
+  # belongs_to :products
+  # belongs_to :profiles
 end

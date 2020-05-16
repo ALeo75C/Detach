@@ -1,4 +1,5 @@
 <div class="productPage">
+
   <h1><%= @product.name %></h1>
   <div class="cover">
     <div class="image">
@@ -32,10 +33,19 @@
       <div class="tags">
         <h4>Подходит для типов кожи</h4>
         <div class="tagList">
-          <span>Нормальная</span>
-          <span>Сухая</span>
-          <span>Жирная</span>
-          <span>Комбинированная</span>
+          <% @skin_tags.each do |tag| %>
+            <% if tag == "Жирная кожа" %>
+              <span class="t-1">Жирная</span>
+            <% elsif tag == "Сухая кожа" %>
+              <span class="t-2">Сухая</span>
+            <% elsif tag == "Нормальная кожа" %>
+              <span class="t-3">Нормальная</span>
+            <% elsif tag == "Комбинированная кожа" %>
+              <span class="t-4">Комбинированная</span>
+            <% elsif tag == "Чувствительня кожа" %>
+              <span class="t-5">Чувствительная</span>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <div class="block">
@@ -211,23 +221,42 @@
         <% end %>
       </div>
 
-      <div class="comments">
-        <h2>Отзывы</h2>
-        <% if @product.comments.count != 0 %>
-          <% @product.comments.each do |com| %>
-          <p>
-            <%= com.content %>
-          </p>
-          <% end %>
-        <% else %>
-          <h3>Отзывов пока нет</h3>
-        <% end %>
-        <% if current_user %>
-          <%= render "but", mes: "Добвить отзыв", rout: new_product_comment_path(@product), method: :get %>
-        <% end %>
-      </div>
     </div>
 
+    <div class="comments">
+      <h2>Отзывы</h2>
+      <% comments = Array.new %>
+      <% Comment.all.each do |com| %>
+        <% if com.product_id == @product.id %>
+          <% comments.push(com) %>
+        <% end %>
+      <% end %>
+
+      <% if comments.count != 0 %>
+        <% comments.each do |com| %>
+          <% profile = Profile.find(com.profile_id) %>
+          <div class="point">
+            <div class="header">
+              <div class="info">
+                <h3><%= profile.name %></h3>
+                <span><%= com.created_at.to_s(:date) %></span>
+              </div>
+              <div class="tagList">
+                <span><%= profile.skin_type.name %></span>
+              </div>
+            </div>
+            <p><%= com.content %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <h3>Отзывов пока нет</h3>
+      <% end %>
+      <% if current_user %>
+        <%= render "but", mes: "Добвить отзыв", rout: new_comment_path(product_id: @product), method: :get %>
+      <% else %>
+        <%= render "but", mes: "Добвить отзыв", rout: new_user_session_path, method: :get %>
+      <% end %>
+    </div>
     <div class="products">
       <h2>Вам может быть интерено</h2>
       <div class="cardsCollection">

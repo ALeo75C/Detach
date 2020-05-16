@@ -1,0 +1,18 @@
+<div class="catalog inside">
+  <% group = ProductGroup.find(params[:id]) %>
+  <div class="filters">
+    <h2><%= group.name %></h2>
+    <% product_types = Array.new %>
+    <% group.products.each do |product| %>
+      <% product_types.push(product.product_types.first.name) %>
+    <% end %>
+    <% product_types.each do |product_type| %>
+      <p><%= product_type %></p>
+    <% end %>
+  </div>
+  <div class="cardsCollection">
+    <% group.products.each do |product| %>
+      <%= render 'productCard', mod: product %>
+    <% end %>
+  </div>
+</div>

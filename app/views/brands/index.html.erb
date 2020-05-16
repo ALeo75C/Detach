@@ -27,10 +27,38 @@
   </div>
 
   <div class="brands_list">
-    <h1>Быква</h1>
-      <div class="brands_grup">
-        <% @brands.each do |brand| %>
+    <% brands = Array.new %>
+    <% @brands.all.each do |brand| %>
+      <% brands.push(brand.name) %>
+    <% end %>
+    <% brands = brands.sort %>
+    <% a = brands[0][0] %>
+    <h1><%= a %></h1>
+    <div class="brands_grup">
+    <% brands.each do |brand_name| %>
+      <% if brand_name[0] == a %>
+        <div class="brand">
+          <% brand = Brand.find_by name: brand_name %>
+          <% if current_user %>
+            <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
+              <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path do%>
+              <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
+            <% end %>
+          <% end %>
+          <%= link_to brand do%>
+            <p><%= brand.name %></p>
+          <% end %>
+        </div>
+      <% else %>
+    </div>
+    <% a = brand_name[0] %>
+    <h1><%= a %></h1>
+    <div class="brands_grup">
           <div class="brand">
+            <% brand = Brand.find_by name: brand_name %>
             <% if current_user %>
               <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
                 <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
@@ -44,10 +72,11 @@
               <p><%= brand.name %></p>
             <% end %>
           </div>
+        <% end %>
       <% end %>
     </div>
+    </div>
   </div>
-</div>
 
 
 

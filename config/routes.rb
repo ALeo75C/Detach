@@ -16,9 +16,11 @@ Rails.application.routes.draw do
 
   # resources :components
   # resources :active_effects
-  resources :products do
-    resources :comments
-  end
+  resources :comments
+  get '/catalog', to: 'products#index', as: :catalogs
+  get 'catalog/:id', to: 'products#catalog', as: :catalog
+  # resources :products do
+  # end
 
   # root"detach#landing"
   # get 'detach/landing'

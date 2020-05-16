@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  load_and_authorize_resource
-  
+  # load_and_authorize_resource
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
 
@@ -62,8 +62,37 @@ class ProductsController < ApplicationController
       end
     end
 
+    @skin_tags = Array.new
 
+    @allEffects = Array.new
+    @product.components.each do |component|
+      component.active_effects.each do |effect|
+       @allEffects.push(effect.name)
+      end
+    end
 
+    SkinType.all.each do |skin_type|
+    unwantedFactors = Array.new
+      skin_type.skin_type_factors.each do |factor|
+       unless factor.necessity
+         unwantedFactors.push(ActiveEffect.find(factor.active_effect_id).name)
+       end
+      end
+      i = 0
+      @allEffects.uniq.each do |effect|
+       unwantedFactors.uniq.each do |unwontedFactor|
+         if effect == unwontedFactor
+           i =+ 1
+         end
+       end
+      end
+      if i == 0
+       @skin_tags.push(skin_type.name)
+      end
+    end
+  end
+
+  def catalog
   end
   # GET /products/1/edit
 

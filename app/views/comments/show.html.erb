@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Profile:</strong>
+  <strong>User:</strong>
   <%= @comment.profile_id %>
 </p>
 
 <p>
   <strong>Product:</strong>
-  <%= @comment.product %>
+  <%= @comment.product_id %>
 </p>
 
 <p>
@@ -15,5 +15,5 @@
   <%= @comment.content %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Edit', edit_comment_path(params[:prodyct_id], @comment) %> |
 <%= link_to 'Back', comments_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_104549) do
+ActiveRecord::Schema.define(version: 2020_05_12_191752) do
 
   create_table "active_effects", force: :cascade do |t|
     t.string "name"
@@ -80,9 +80,23 @@ ActiveRecord::Schema.define(version: 2020_04_26_104549) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "product_groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "product_promises", force: :cascade do |t|
     t.integer "active_effect_id"
     t.integer "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_types", force: :cascade do |t|
+    t.integer "product_group_id"
+    t.integer "product_id"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -94,7 +108,6 @@ ActiveRecord::Schema.define(version: 2020_04_26_104549) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
-    t.string "view"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -122,7 +135,8 @@ ActiveRecord::Schema.define(version: 2020_04_26_104549) do
 
   create_table "skin_type_factors", force: :cascade do |t|
     t.integer "skin_type_id"
-    t.integer "skin_factors_id"
+    t.integer "active_effect_id"
+    t.boolean "necessity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

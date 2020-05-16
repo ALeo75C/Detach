@@ -2,7 +2,7 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   has_many :comments
-  has_many :products, through: :comments
+  # has_many :products, through: :comments
 
   has_many :favorites
   has_many :products, through: :favorites

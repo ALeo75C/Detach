@@ -1,5 +1,6 @@
 body {
   // width: 84vw;
+  height: auto;
   overflow-x: hidden;
   margin: 150px auto 0;
   margin-left: 180px;
@@ -68,12 +69,13 @@ body {
   .cardsCollection {
     display: grid;
     grid-template-columns: repeat(5  , 1fr);
-    grid-gap: 40px;
-    width: 90vw;
+    grid-gap: 20px;
+    width: 75vw;
     overflow-y: hidden;
 
     &.articles {
       grid-template-columns: repeat(4  , 1fr);
+      grid-gap: 20px;
     }
 
   }
@@ -107,7 +109,8 @@ body {
     }
     .cardsCollection {
       grid-gap: 30px;
-      width: 86vw;
+      padding: 0;
+      max-width: 86vw;
       overflow-x: scroll;
       // padding-right: 30px;
       &.articles {

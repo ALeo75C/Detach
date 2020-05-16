@@ -16,7 +16,7 @@
 
 <% mes = 'Показать все' %>
 
-<%= render "products/productBlock", h2: "Новинки", cla: Product, cardType: "products/productCard", mes: mes, rout: products_path, method: :get %>
+<%= render "products/productBlock", h2: "Новинки", cla: Product, cardType: "products/productCard", mes: mes, rout: catalogs_path, method: :get %>
 
 <%= render "products/productBlock", h2: "Бренды", cla: Brand, cardType: "brands/brandCard", mes: mes, rout: brands_path, method: :get %>
 
