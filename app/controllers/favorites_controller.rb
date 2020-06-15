@@ -28,20 +28,39 @@ class FavoritesController < ApplicationController
   # POST /favorites
   # POST /favorites.json
   def create
-    @favorite = Favorite.new(profile_id: current_user.profile.id, product_id: params[:product_id])
 
-    product = Product.find(params[:product_id])
+    user = Profile.find(current_user.profile.id)
+    user_favorites = user.favorites
 
-    respond_to do |format|
-      if @favorite.save
-
-        format.html { redirect_to brand_product_path(product.brand.id, params[:product_id]) }
-        format.json { render :show, status: :created, location: @favorite }
-      else
-        format.html { render :new }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
+    i = -1
+    if user_favorites.count == 0
+      @favorite = Favorite.new(profile_id: current_user.profile.id, product_id: params[:product_id])
+    else
+      user_favorites.each do |f|
+        if params[:product_id].to_i == f.product_id
+          i = f.id
+        end
       end
     end
+
+    if i == -1
+      product = Product.find(params[:product_id])
+      @favorite = Favorite.new(profile_id: current_user.profile.id, product_id: params[:product_id])
+
+      respond_to do |format|
+        if @favorite.save
+          # format.html { redirect_to brand_product_path(product.brand.id, params[:product_id]) }
+          format.json { render :show, status: :created, location: @favorite }
+          format.js
+        else
+          # format.html { render :new }
+          format.json { render json: @favorite.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      Favorite.find(i).destroy
+    end
+
   end
 
   # PATCH/PUT /favorites/1
@@ -76,6 +95,9 @@ class FavoritesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def favorite_params
-      params.require(:favorite).permit(:user_id, :product_id)
+      params[:favorite] = Hash.new
+      params[:favorite][:profile_id] = params[:profile_id]
+      params[:favorite][:product_id] = params[:product_id]
+      params.require(:favorite).permit(:profile_id, :product_id)
     end
 end

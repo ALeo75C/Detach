@@ -1,20 +1,28 @@
 @font-face {
   font-family: Pragmatica;
-  src: url(fonts/Pragmatica.ttf);
+  src: url(fonts/Pragmatica/Pragmatica.ttf),
+       url(fonts/Pragmatica/Pragmatica.woff),
+       url(fonts/Pragmatica/Pragmatica.woff2);
   font-weight: normal;
 }
 @font-face {
   font-family: Pragmatica;
-  src: url(fonts/Pragmatica_bold.ttf);
+  src: url(fonts/PragmaticaBold/Pragmatica_bold.ttf),
+       url(fonts/PragmaticaBold/Pragmatica_bold.woff),
+       url(fonts/PragmaticaBold/Pragmatica_bold.woff2);
   font-weight: bold;
 }
 @font-face {
   font-family: PragmaticaCyr;
-  src: url(fonts/Pragmatica_cyr.ttf);
+  src: url(fonts/PragmaticaCyr/Pragmatica_cyr.ttf),
+       url(fonts/PragmaticaCyr/Pragmatica_cyr.woff),
+       url(fonts/PragmaticaCyr/Pragmatica_cyr.woff2);
   font-weight: normal;
 }
 @font-face {
   font-family: PragmaticaCyr;
-  src: url(fonts/Pragmatica_cyr_bold.ttf);
+  src: url(fonts/PragmaticaCyrBold/Pragmatica_cyr_bold.ttf),
+       url(fonts/PragmaticaCyrBold/Pragmatica_cyr_bold.woff),
+       url(fonts/PragmaticaCyrBold/Pragmatica_cyr_bold.woff2);
   font-weight: bold;
 }

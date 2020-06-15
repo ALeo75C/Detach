@@ -2,12 +2,19 @@ body {
   // width: 84vw;
   height: auto;
   overflow-x: hidden;
-  margin: 150px auto 0;
   margin-left: 180px;
   background-color: #E8D8C7;
 
   * {
     font-family: Pragmatica, sans-serif;
+  }
+  section {
+    padding: 150px 0 0;
+    margin: 0;
+    display: flex;
+    min-height: 84.2vh;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   h1 {
@@ -78,6 +85,68 @@ body {
       grid-gap: 20px;
     }
 
+  }
+
+  form {
+    .field {
+      border-bottom: 1px solid #000;
+      width: 62vw;
+      input {
+        width: 60vw;
+        padding: 10px;
+        font-size: 18px;
+        background: rgba(0, 0, 0, 0);
+        border: none;
+      }
+      textarea {
+        width: 60vw;
+        padding: 10px;
+        font-size: 18px;
+        background: rgba(0, 0, 0, 0);
+        border: none;
+        height: 150;
+        min-height: 50px;
+      }
+      .select2-container--default .select2-selection--multiple {
+        width: 60vw;
+        padding: 10px;
+        font-size: 15px;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+      }
+      .select2.select2-container.select2-container--default.select2-container--below {
+        min-width: 62vw;
+
+        ul li {
+          border-radius: 0;
+          background: rgba(0, 0, 0, 0);
+          padding: 10px;
+          border: 1px solid #000;
+          margin: 5px 0 0 5px;
+
+          span {
+            margin-right: 10px;
+            padding-right: 10px;
+            border: none;
+          }
+          &:last-of-type {
+            border: none;
+          }
+        }
+      }
+    }
+    h3 {
+      margin: 50px 0 20px;
+    }
+  }
+  .select2-dropdown.select2-dropdown--below {
+    min-width: 62vw;
+    background-color: #e8d8c7;
+    border: 1px solid #000;
+    ul li {
+      margin: 15px 20px 10px;
+      border-bottom: 1px solid #000;
+    }
   }
 }
 

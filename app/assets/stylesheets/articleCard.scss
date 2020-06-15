@@ -1,23 +1,42 @@
 .acticleCard {
   display: inline-block;
+  position: relative;
 
-  a {
-    position: relative;
-    width: 330px;
-    height: 360px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .info {
+  .info {
+      top: 0;
       width: 290px;
       position: absolute;
       padding: 35px 20px;
+
+      a {
+        z-index: 3;
+        position: absolute;
+        width: auto;
+        height: auto;
+        right: 0;
+        top: 30px;
+
+        img {
+          width: 40px;
+          &:first-of-type {
+            display: block
+          }
+          &:last-of-type {
+            display: none
+          }
+        }
+        &.on {
+          img {
+            width: 40px;
+            &:first-of-type {
+              display: none
+            }
+            &:last-of-type {
+              display: block
+            }
+          }
+        }
+      }
 
       p {
         color: #F9FBFB;
@@ -33,6 +52,19 @@
         color: #F9FBFB;
       }
     }
+  a {
+    position: relative;
+    width: 330px;
+    height: 360px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+
 
     .image {
       z-index: -1;

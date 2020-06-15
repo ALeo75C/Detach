@@ -7,19 +7,74 @@
     <% end %>
     <ul>
       <% Article.all.each do |ar| %>
-        <% if ar.id == @article.id %>
-          <%= link_to ar.header, article_path(ar.id), style: 'font-weight: bold;' %>
-        <% else %>
-          <%= link_to ar.header, article_path(ar.id)%>
-        <% end %>
+        <li>
+          <% if current_user %>
+            <% i = 0 %>
+            <% current_user.profile.bookmarks.each do |book| %>
+              <% if book.article_id == @article.id %>
+                <% i =+ 1 %>
+              <% end %>
+            <% end %>
+            <% if i == 0 %>
+            <%= link_to bookmark_article_path, id: "article_s_id#{@article.id}", remote: true do %>
+              <%= image_tag asset_path("icons/bookmark/inactive.svg") %>
+              <%= image_tag asset_path("icons/bookmark/active.svg") %>
+            <% end %>
+            <% else %>
+              <%= link_to bookmark_article_path, id: "article_s_id#{@article.id}", class: "on", remote: true do %>
+                <%= image_tag asset_path("icons/bookmark/inactive.svg") %>
+                <%= image_tag asset_path("icons/bookmark/active.svg") %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path do %>
+              <%= image_tag asset_path("icons/bookmark/inactive.svg") %>
+            <% end %>
+          <% end %>
+          <% if ar.id == @article.id %>
+            <%= link_to ar.header, article_path(ar.id), style: 'font-weight: bold;' %>
+          <% else %>
+            <%= link_to ar.header, article_path(ar.id)%>
+          <% end %>
+          <script type="text/javascript">
+            article_id = <%= @article.id %>;
+            bookmark = document.getElementById("article_s_id" + article_id)
+            bookmark.onclick = function() {
+              this.classList.toggle('on')
+            }
+          </script>
+        </li>
       <% end %>
     </ul>
   </div>
   <div class="article_cont">
+    <div class="article_cover">
+      <h1><%= @article.header %></h1>
+      <% if current_user %>
+        <% i = 0 %>
+        <% current_user.profile.bookmarks.each do |book| %>
+          <% if book.article_id == @article.id %>
+            <% i =+ 1 %>
+          <% end %>
+        <% end %>
+        <% if i == 0 %>
+        <%= link_to bookmark_article_path, id: "article_id#{@article.id}", remote: true do %>
+          <%= image_tag asset_path("icons/bookmark/inactive.svg") %>
+          <%= image_tag asset_path("icons/bookmark/active.svg") %>
+        <% end %>
+        <% else %>
+          <%= link_to bookmark_article_path, id: "article_id#{@article.id}", class: "on", remote: true do %>
+            <%= image_tag asset_path("icons/bookmark/inactive.svg") %>
+            <%= image_tag asset_path("icons/bookmark/active.svg") %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path do %>
+          <%= image_tag asset_path("icons/bookmark/inactive.svg") %>
+        <% end %>
+      <% end %>
 
-    <h1>
-      <%= @article.header %>
-    </h1>
+    </div>
 
     <%= image_tag @article.cover.url unless @article.cover.url == nil %>
 
@@ -37,3 +92,13 @@
 
 </div>
 </div>
+
+<script type="text/javascript">
+  article_id = <%= @article.id %>;
+  bookmark = document.getElementById("article_id" + article_id)
+
+
+  bookmark.onclick = function() {
+    this.classList.toggle('on')
+  }
+</script>

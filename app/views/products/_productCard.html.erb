@@ -1,4 +1,30 @@
 <div class="productCard">
+  <% if current_user %>
+  <% i = 0 %>
+
+    <% current_user.profile.favorites.each do |f| %>
+      <% if f.product_id == mod.id %>
+        <% i =+ 1 %>
+      <% end %>
+    <% end %>
+
+    <% if i == 0 %>
+      <%= link_to profile_favorites_path(profile_id: current_user.profile.id, product_id: mod.id), id: "follow_#{mod.id}", class: "product_follow", remote: true, method: :post do %>
+        <%= image_tag(asset_path("icons/follow/inactiveDarc.png")) %>
+        <%= image_tag(asset_path("icons/follow/activeBlack.png")) %>
+      <% end %>
+    <% else %>
+      <%= link_to profile_favorites_path(profile_id: current_user.profile.id, product_id: mod.id), id: "follow_#{mod.id}", class: "product_follow on", remote: true, method: :post do %>
+      <%= image_tag(asset_path("icons/follow/inactiveDarc.png")) %>
+        <%= image_tag(asset_path("icons/follow/activeBlack.png")) %>
+      <% end %>
+    <% end %>
+
+  <% else %>
+    <%= link_to new_user_session_path, remote: true do %>
+      <%= image_tag(asset_path("icons/follow/inactiveDarc.png")) %>
+    <% end %>
+  <% end %>
   <%= link_to (brand_product_path(mod.brand_id, mod.id)) do %>
     <div class="image">
       <% if mod.image.url %>
@@ -10,7 +36,6 @@
         <div class="spetial">
           <span>Новинка</span>
         </div>
-        <%= image_tag(asset_path("icons/follow/staticWhite.png")) %>
       </div>
 
     </div>
@@ -24,3 +49,16 @@
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  controller = "<%= controller.class %>";
+  product_id = <%= mod.id %>;
+  status = <%= i %>;
+  follow = document.getElementById('follow_' + product_id);
+  icon = follow.getElementsByTagName('img')[0];
+
+
+  follow.onclick = function() {
+    this.classList.toggle("on")
+  }
+</script>

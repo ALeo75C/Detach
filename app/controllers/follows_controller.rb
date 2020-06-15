@@ -1,5 +1,4 @@
 class FollowsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_follow, only: [:show, :edit, :update, :destroy]
 
   # GET /follows
@@ -70,6 +69,10 @@ class FollowsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def follow_params
+      params[:follow] = Hash.new
+      params[:follow][:brand_id] = params[:brand_id]
+      params[:follow][:profile_id] = params[:profile_id]
+
       params.require(:follow).permit(:brand_id, :profile_id)
     end
 end

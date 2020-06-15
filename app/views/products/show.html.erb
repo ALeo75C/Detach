@@ -1,5 +1,92 @@
 <div class="productPage">
 
+  <div class="find_product">
+    <div class="cover">
+      <div class="image">
+        <%= image_tag @product.image.url unless @product.image.url == nil %>
+      </div>
+      <div class="info">
+        <h2><%= @product.name %></h2>
+        <p>Компактное многофункциональное тональное средство в форме стика для идеального тона, моделирования контуров и выделения отдельных зон.</p>
+      </div>
+    </div>
+    <div class="content">
+      <h3>Приобретая товар через наш сервис вы получаете скидку у наших партнеров</h3>
+      <div class="shop">
+        <div class="image">
+          <%= image_tag asset_path('shop/1.png') %>
+        </div>
+        <div class="info">
+          <div class="payment">
+            <p>Цена по скидке:</p>
+            <p>1200 ₽</p>
+          </div>
+          <div class="payment">
+            <p>Цена на сайте:</p>
+            <p>2000 ₽</p>
+          </div>
+          <h4>
+            <a href="#">Приобрести</a>
+          </h4>
+        </div>
+      </div>
+      <div class="shop">
+        <div class="image">
+          <%= image_tag asset_path('shop/2.png') %>
+        </div>
+        <div class="info">
+          <div class="payment">
+            <p>Цена по скидке:</p>
+            <p>1300 ₽</p>
+          </div>
+          <div class="payment">
+            <p>Цена на сайте:</p>
+            <p>1500 ₽</p>
+          </div>
+          <h4>
+            <a href="#">Приобрести</a>
+          </h4>
+        </div>
+      </div>
+      <div class="shop">
+        <div class="image">
+          <%= image_tag asset_path('shop/3.jpg') %>
+        </div>
+        <div class="info">
+          <div class="payment">
+            <p>Цена по скидке:</p>
+            <p>1500 ₽</p>
+          </div>
+          <div class="payment">
+            <p>Цена на сайте:</p>
+            <p>1800 ₽</p>
+          </div>
+          <h4>
+            <a href="#">Приобрести</a>
+          </h4>
+        </div>
+      </div>
+      <div class="shop">
+        <div class="image">
+          <%= image_tag asset_path('shop/4.png') %>
+        </div>
+        <div class="info">
+          <div class="payment">
+            <p>Цена по скидке:</p>
+            <p>1000 ₽</p>
+          </div>
+          <div class="payment">
+            <p>Цена на сайте:</p>
+            <p>1200 ₽</p>
+          </div>
+          <h4>
+            <a href="#">Приобрести</a>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <h1><%= @product.name %></h1>
   <div class="cover">
     <div class="image">
@@ -60,7 +147,9 @@
         <% if can? :edit, @post %>
         <%= render "but", mes: "Редактировать", rout: edit_brand_product_path(@product.brand_id, @product.id), method: :get %>
         <% end %>
-        <%= render "but", mes: "Сравнить цены", rout: edit_brand_product_path(@product.brand_id, @product.id), method: :get %>
+        <div class="but">
+          <a href="#", id="find"><span>Сравнить цены</span></a>
+        </div>
         <% if current_user %>
           <%= render "but", mes: "Добавить в избранное", rout: profile_favorites_path(profile_id: current_user.profile.id, product_id: @product.id), method: :post %>
         <% else %>
@@ -267,3 +356,13 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  but_open = document.getElementById("find")
+  block = document.getElementsByClassName("find_product")[0]
+
+  but_open.onclick = function() {
+    console.log(123);
+    block.classList.add('open')
+  }
+</script>

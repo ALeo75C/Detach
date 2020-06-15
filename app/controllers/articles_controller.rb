@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  load_and_authorize_resource
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  # load_and_authorize_resource
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :bookmark]
 
   # GET /articles
   # GET /articles.json
@@ -16,6 +16,39 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+  end
+
+  def bookmark
+    puts params
+
+    puts "0000000000000000000000000000000000"
+    i = 0
+
+    puts current_user.profile.bookmarks.count
+
+    if current_user.profile.bookmarks.count == 0
+      Bookmark.create!(profile_id: current_user.profile.id, article_id: params[:id])
+    else
+      current_user.profile.bookmarks.each do |book|
+        puts book.article_id
+        if book.article_id == params[:id].to_i
+          i = i + 1
+        end
+      end
+      if i == 0
+        Bookmark.create!(profile_id: current_user.profile.id, article_id: params[:id])
+      else
+        Bookmark.find_by(article_id: params[:id].to_i).destroy
+      end
+    end
+
+    puts i
+
+
+    respond_to do |format|
+      #format.html { redirect_to article_path(@article) }
+      format.json { render :show, status: :created, location: @article }
+    end
   end
 
   # GET /articles/1/edit

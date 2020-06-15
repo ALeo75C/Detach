@@ -34,7 +34,14 @@
       margin-bottom: 20px;
       width: 35vw;
       height: 20vw;
-      background-color: #A6D878
+      background-color: #A6D878;
+      position: relative;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        width: 100%;
+      }
     }
   }
 }

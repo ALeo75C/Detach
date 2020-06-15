@@ -8,19 +8,81 @@
     h3 {
       margin-bottom: 40px;
     }
-    a {
-      font-size: 16px;
 
+    ul li {
+      display: flex;
+      position: relative;
       &:hover {
-        text-decoration: underline;
+        a:first-of-type{
+          img:first-of-type {
+            display: block;
+          }
+        }
       }
-    }
-    a + a {
-      margin-top: 40px;
+
+      a {
+        img {
+          position: absolute;
+          top: 0;
+          left: -40px;
+          width: 20px;
+          &:first-of-type {
+            display: none;
+          }
+          &:last-of-type {
+            display: none;
+          }
+        }
+      }
+
+      a {
+        font-size: 16px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      & + li {
+        margin-top: 40px;
+      }
     }
   }
   .article_cont {
     margin-left: 120px;
+
+    .article_cover {
+      display: flex;
+      h1 {
+        width: 50vw;
+        margin-right: 20px;
+      }
+
+      a {
+        display: block;
+        margin-top: 10px;
+        img {
+          width: 30px;
+          &:first-of-type {
+            display: block;
+          }
+          &:last-of-type {
+            display: none;
+          }
+        }
+        &.on {
+          img {
+            &:first-of-type {
+              display: none;
+            }
+            &:last-of-type {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
 
     img {
       margin-bottom: 40px;

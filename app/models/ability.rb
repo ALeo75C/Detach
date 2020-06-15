@@ -19,13 +19,13 @@ class Ability
       can :read, Detach
       can :read, Article
       can :read, Brand
-      can :read, Favorite
+      can :manage, Favorite
       can :read, Product
     else
       can :read, Detach
       can :read, Article
       can :read, Brand
-      can :read, Favorite
+      can :manage, Favorite
       can :read, Product
     end
 

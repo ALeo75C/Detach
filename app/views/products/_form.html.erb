@@ -1,3 +1,4 @@
+<%#= form_with(scope: :product, url: brand_path(@product), method: :patch, local: true) do |form| %>
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
@@ -19,33 +20,26 @@
   </div>
 
 
+  <h3>Название</h3>
   <div class="field">
-    <%= form.label :name %>
+    <% form.label :name %>
     <%= form.text_field :name %>
   </div>
 
+  <h3>Описание</h3>
   <div class="field">
-    <%= form.label :description %>
+    <% form.label :description %>
     <%= form.text_area :description %>
   </div>
 
   <h3>Обещания</h3>
   <div class="field">
-    <% ActiveEffect.all.each do |effect| %>
-      <%= check_box_tag('effects[active_effect.id][]', effect.id) %>
-      <%#= check_box_tag(:component_id) %>
-      <%= effect.name %><br>
-    <% end %>
+    <%= form.select :active_effect_id, ActiveEffect.all.collect { |ef| [ef.name, ef.id] }, {}, { multiple: true } %>
   </div>
-  <br>
 
 <h3>Состав</h3>
   <div class="field">
-    <% Component.all.each do |component| %>
-      <%= check_box_tag('components[component.id][]', component.id) %>
-      <%#= check_box_tag(:component_id) %>
-      <%= component.name %><br>
-    <% end %>
+    <%= form.select :component_id, Component.all.each { |c| [c.name, c.id] }, {}, { multiple: true } %>
   </div>
 
   <div class="actions">

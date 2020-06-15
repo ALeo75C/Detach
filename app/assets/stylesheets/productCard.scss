@@ -1,8 +1,35 @@
 .productCard {
-
+  position: relative;
   width: 235px;
   a {
     display: block;
+
+    &.product_follow {
+      position: absolute;
+      top: 20px;
+      right: 8px;
+      z-index: 2;
+
+        img {
+          &:first-of-type {
+            display: block;
+          }
+          &:last-of-type {
+            display: none;
+          }
+        }
+
+      &.on {
+        img {
+          &:first-of-type {
+            display: none;
+          }
+          &:last-of-type {
+            display: block;
+          }
+        }
+      }
+    }
 
     .image {
       position: relative;
@@ -44,9 +71,13 @@
           }
         }
 
-        img {
-          width: 25px;
-          height: 24px;
+        .follow {
+          width: 20px;
+          height: 20px;
+          img {
+            width: 25px;
+            height: 24px;
+          }
         }
       }
     }
@@ -59,6 +90,9 @@
       h3 {
         opacity: 50%;
         margin-bottom: 8px;
+      }
+      p {
+        width: 235px;
       }
     }
   }

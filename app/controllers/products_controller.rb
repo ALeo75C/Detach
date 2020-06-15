@@ -135,9 +135,24 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    params[:product][:component_id].delete_at(0)
+    @product.structure.each { |structure| structure.destroy }
+    params[:product][:component_id].each do |component|
+      Structure.create!(product_id: @product.id, component_id: component)
+    end
+
+    params[:product][:active_effect_id].delete_at(0)
+    @product.product_promise.each { |promise| promise.destroy }
+    params[:product][:active_effect_id].each do |effect|
+      ProductPromise.create!(product_id: @product.id, active_effect_id: effect)
+    end
     respond_to do |format|
+      puts "_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_"
+      # params[:component_id].delete_at(0)
+      puts params[:component_id]
+      puts params[:component_id]
       if @product.update(product_params)
-        format.html { redirect_to brand_product_path(@product.brand_id), notice: 'Product was successfully updated.' }
+        format.html { redirect_to brand_product_path(@product.brand_id, @product), notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -164,6 +179,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:brand_id, :name, :description, :image)
+      params.require(:product).permit(:brand_id, :name, :description, :image, :active_effect_id, :component_id)
     end
 end

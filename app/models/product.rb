@@ -11,7 +11,7 @@ class Product < ApplicationRecord
   has_many :active_effects, through: :product_promise
 
   has_many :favorites
-  has_many :users, through: :favorites
+  # has_many :users, through: :favorites
 
   has_many :product_types
   has_many :products_groups, through: :product_types

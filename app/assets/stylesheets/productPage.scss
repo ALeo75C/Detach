@@ -1,4 +1,105 @@
 .productPage {
+
+  .find_product {
+    display: none;
+    padding: 60px 120px 200vh;
+    z-index: 10;
+    top: 65px;
+    left: 0;
+    position: absolute;
+    width: 87vw;
+    height: 100vh;
+    background-color: rgba(10, 2, 2, 0.5);
+    &.open {
+      display: block;
+    }
+
+    .cover {
+      margin: 0;
+      padding: 120px 120px 50px;
+      background: #0A0202;
+      line-height: 1.4px;
+      .image {
+        width: 240px;
+        height: 305px;
+      }
+      .info {
+        color: #E8D8C6;
+        h2 {
+          margin-bottom: 25px;
+          width: 540px;
+        }
+        p {
+          width: 540px;
+        }
+      }
+    }
+
+    .content {
+      padding: 0 120px 125px;
+
+      background-color: #0A0202;
+      color: #E8D8C6;
+
+      h3 {
+        line-height: 1.5;
+        color: #E8D8C6;
+        width: 480px;
+        padding: 50px 0 50px;
+      }
+
+      .shop {
+        display: flex;
+        justify-content: flex-start;
+        .image {
+          background: #E8D8C6;
+          width: 240px;
+          height: 160px;
+          margin-right: 8vw;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 100%
+          }
+        }
+        .info {
+          .payment {
+            display: flex;
+            width: 420px;
+            align-items: baseline;
+
+            &:first-of-type {
+              color: #C78D75
+            }
+            &:last-of-type {
+              color: #E8D8C6
+            }
+            p + p {
+              margin-top: 10px;
+            }
+          }
+          h4 {
+            color: #E8D8C6;
+            text-decoration: underline;
+            font-weight: bold;
+            margin-top: 50px;
+            a {
+              color: inherit;
+              text-decoration: inherit;
+            }
+          }
+
+        }
+
+        & +.shop {
+          margin-top: 60px;
+        }
+      }
+    }
+  }
+
   h1 {
     display: none;
   }
@@ -340,7 +441,7 @@
           }
         }
         p {
-          width: 500px;
+          width: 60vw;
           margin-top: 30px;
 
         }

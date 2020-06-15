@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :articles
+  resources :articles do
+    member do
+      get :bookmark
+    end
+  end
 
   devise_for :users do
     resources :profiles
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
   resources :brands do
     resources :products
   end
+  resources :products
 
   # resources :components
   # resources :active_effects

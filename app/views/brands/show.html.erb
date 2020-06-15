@@ -12,7 +12,7 @@
         <% if current_user %>
           <%= render "but", mes: "Подписаться", rout: profile_follows_path(profile_id: current_user.profile.id, brand_id: @brand.id), method: :post %>
         <% else %>
-          <%= render "but", mes: "Подписаться", rout: new_user_session_path, method: :get %>
+          <%= render "but", mes: "Подписаться", rout: new_user_session_path, method: :get  %>
         <% end %>
         <% if can? :edit, @post %>
           <%= render "but", mes: "Редактировать", rout: edit_brand_path, method: :get %>
@@ -33,9 +33,7 @@
     <% end %>
   </div>
 
-  <p>
-    <%= @brand.site %>
-  </p>
+  <!-- <p><%#= @brand.site %></p> -->
 
   <h2>Продукты</h2>
 

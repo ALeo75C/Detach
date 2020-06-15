@@ -22,12 +22,16 @@
       <% product = @products.find(favorite.product_id) %>
       <%= render "products/productCard", mod: product %>
       <%= link_to profile_favorite_url(id: favorite.id), method: :delete  do%>
-      <div class="delete">
-        <span>Delete</span>
-      </div>
       <% end %>
     </div>
   <% end %>
-</div>
+  </div>
+
+  <div class="favoriteCollection">
+    <% current_user.profile.bookmarks.each do |book| %>
+    <% article = Article.find_by id: book.article_id %>
+    <%= render "articles/articleCard", mod: article %>
+    <% end %>
+  </div>
 
 </div>

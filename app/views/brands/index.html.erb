@@ -40,7 +40,7 @@
         <div class="brand">
           <% brand = Brand.find_by name: brand_name %>
           <% if current_user %>
-            <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post  do%>
+            <%= link_to profile_follows_path(profile_id: current_user.profile.id, brand_id: brand.id), method: :post do %>
               <%= image_tag asset_path("icons/follow/inactiveDarc.png") %>
             <% end %>
           <% else %>
